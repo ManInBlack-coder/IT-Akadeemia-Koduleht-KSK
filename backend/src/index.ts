@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import 'dotenv/config'
+import 'dotenv/config';
 const PORT = process.env.PORT || 3000
 
 const app = express();
