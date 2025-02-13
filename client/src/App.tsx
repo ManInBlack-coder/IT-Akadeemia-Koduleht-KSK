@@ -3,10 +3,9 @@ import './App.css'
 function App() {
 
   return (
-    <>
-    
-    <h2>IT Akadeemia koduleht</h2>
-    <p>Website coming soon</p>
+    <>  
+      <h2 className="text-3xl">IT Akadeemia koduleht</h2>
+      <p>Website coming soon</p>
     </>
   )
 }
