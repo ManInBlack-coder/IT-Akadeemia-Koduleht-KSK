@@ -8,6 +8,7 @@ import Erialad from './pages/Erialad/Erialad';
 import Praktika from './pages/Praktika/Praktika';
 import Tunniplaan from './pages/Tunniplaan/Tunniplaan';
 import Voistlused from './pages/Voistlused/Voistlused';
+import { Konsultatsioonid } from './pages/Konsultatsioonid/Konsultatsioonid';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/praktika" element={<Praktika/>}/>
           <Route path="/tunniplaan" element={<Tunniplaan/>}/>
           <Route path="/voistlused" element={<Voistlused/>}/>
+          <Route path='konsultatsioonid' element={<Konsultatsioonid/>}/>
         </Routes>
         <Footer/>
       </div>
