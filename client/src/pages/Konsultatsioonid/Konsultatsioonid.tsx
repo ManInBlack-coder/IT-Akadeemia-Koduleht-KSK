@@ -7,7 +7,7 @@ export const Konsultatsioonid = () => {
 
 <div>
 
-<div className=""> <h1> ÕPETAJATE KONSULTATSIOONID</h1></div>
+<div className=""> <h1 className="margin top 10px"> ÕPETAJATE KONSULTATSIOONID</h1></div>
 
 
 {/*Valiku lahtrid*/}
