@@ -1,3 +1,6 @@
 .praktika-bg-one{
     background-image: url('/src/assets/praktika/praktikaBackground1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }

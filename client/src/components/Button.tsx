@@ -1,4 +1,5 @@
 import React from 'react'
+import './Button.css'
 
 interface ButtonProps {
     buttonText: string;
@@ -6,8 +7,8 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({ buttonText }) => {
   return (
-    <div className="p-4 flex justify-center items-center bg-">
-        <p className="text-xl font-bold text-white">{buttonText}</p>
+    <div className="button-hover p-4 flex justify-center items-center bg-itkool hover:cursor-pointer">
+        <p className="text-xl text-large-bold px-8 text-white">{buttonText}</p>
     </div>
   )
 }
