@@ -4,3 +4,10 @@
     background-size: cover;
     background-position: center;
 }
+
+.praktika-bg-two{
+    background-image: url('/src/assets/praktika/erasmusBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
