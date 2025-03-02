@@ -9,10 +9,10 @@ interface PraktikaJourneryComponentProps {
 
 export const PraktikaJourneryComponent: React.FC<PraktikaJourneryComponentProps> = ({ number, title, body, bgColor }) => {
   return (
-    <div className={`flex flex-col items-start justify-start w-full bg-${bgColor}`}>
+    <div className={`flex flex-col items-center justify-start w-full p-8 gap-4 ${bgColor} rounded-md`}>
         <p className="text-heading2-bold w-full text-center">{number}</p>
         <h3 className='text-heading3-bold text-center w-full'>{title}</h3>
-        <div>{body}</div>
+        <div className="w-full">{body}</div>
     </div>
   )
 }
