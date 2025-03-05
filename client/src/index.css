@@ -1,7 +1,13 @@
-@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,7 +21,148 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+p{
+  font-size: 14px;
+}
+
+b{
+  font-weight: 700;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
+
+
+/* TYPOGRAPHY */
+.text-heading1-regular{
+  font-size: 32px;
+  font-weight: 400;
+}
+.text-heading1-medium{
+  font-size: 32px;
+  font-weight: 500;
+}
+.text-heading1-bold{
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.text-heading2-regular{
+  font-size: 28px;
+  font-weight: 400;
+}
+.text-heading2-medium{
+  font-size: 28px;
+  font-weight: 500;
+}
+.text-heading2-bold{
+  font-size: 28px;
+  font-weight: 700;
+}
+ 
+.text-heading3-regular{
+  font-size: 25px;
+  font-weight: 400;
+}
+.text-heading3-medium{
+  font-size: 25px;
+  font-weight: 500;
+}
+.text-heading3-bold{
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.text-heading4-regular{
+  font-size: 22px;
+  font-weight: 400;
+}
+.text-heading4-medium{
+  font-size: 22px;
+  font-weight: 500;
+}
+.text-heading4-bold{
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.text-heading5-regular{
+  font-size: 20px;
+  font-weight: 400;
+}
+.text-heading5-medium{
+  font-size: 20px;
+  font-weight: 500;
+}
+.text-heading5-bold{
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.text-heading6-regular{
+  font-size: 18px;
+  font-weight: 400;
+}
+.text-heading6-medium{
+  font-size: 18px;
+  font-weight: 500;
+}
+.text-heading6-bold{
+  font-size: 18px;
+  font-weight: 700;
+} 
+
+.text-large-regular{
+  font-size: 16px;
+  font-weight: 400;
+}
+.text-large-medium{
+  font-size: 16px;
+  font-weight: 500;
+}
+.text-large-bold{
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.text-base-regular{
+  font-size: 14px;
+  font-weight: 400;
+}
+.text-base-medium{
+  font-size: 14px;
+  font-weight: 500;
+}
+.text-base-bold{
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.text-small-regular{
+  font-size: 12px;
+  font-weight: 400;
+}
+.text-small-medium{
+  font-size: 12px;
+  font-weight: 500;
+}
+.text-small-bold{
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.text-xsmall-regular{
+  font-size: 11px;
+  font-weight: 400;
+}
+.text-xsmall-medium{
+  font-size: 11px;
+  font-weight: 500;
+}
+.text-xsmall-bold{
+  font-size: 11px;
+  font-weight: 700;
+}
+
