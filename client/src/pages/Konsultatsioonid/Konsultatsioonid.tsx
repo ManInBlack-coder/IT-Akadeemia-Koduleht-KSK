@@ -1,6 +1,9 @@
+import { useState } from "react"
 import Konsul_tabel from "./konsultatsioonide_tabel/konsul_tabel"
 
 export const Konsultatsioonid = () => {
+  const [konsultatsioonid, setKonsultatsioonid] = useState<any[]>([])
+  
   return (
     <div>
 
