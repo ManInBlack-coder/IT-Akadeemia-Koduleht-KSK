@@ -15,13 +15,13 @@ export const Header = () => {
                 <p>Praktika</p>
             </Link>
             <Link to="/tunniplaan">
-                Tunniplaan
+                <p>Tunniplaan</p>
             </Link>
             <Link to="/konsultatsioonid">
-                Konsultatsioonid
+                <p>Konsultatsioonid</p>
             </Link>
             <Link to="/voistlused">
-                Võistlused
+                <p>Võistlused</p>
             </Link>
         </div>
     </div>
