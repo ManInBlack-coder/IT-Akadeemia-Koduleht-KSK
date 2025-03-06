@@ -1,41 +1,122 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Voistlused = () => {
   const [selectedYear, setSelectedYear] = useState('2025');
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [currentNoorMeisterIndex, setCurrentNoorMeisterIndex] = useState(0);
   
   const years = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'];
   
   const slides = [
     {
       id: 1,
-      image: '/src/assets/images/voistlus1.jpg',
+      image: '/src/assets/images/aasta1.png',
       alt: 'Võistlus pilt 1'
     },
     {
       id: 2,
-      image: '/src/assets/images/voistlus2.jpg',
+      image: '/src/assets/images/aasta2.png',
       alt: 'Võistlus pilt 2'
     },
     {
       id: 3,
-      image: '/src/assets/images/voistlus3.jpg',
+      image: '/src/assets/images/aasta3.png',
       alt: 'Võistlus pilt 3'
-    }
+    },
+    {
+      id: 4,
+      image: '/src/assets/images/aasta1.png',
+      alt: 'Võistlus pilt 4'
+    },
+    {
+      id: 5,
+      image: '/src/assets/images/aasta2.png',
+      alt: 'Võistlus pilt 5'
+    },
+    {
+      id: 6,
+      image: '/src/assets/images/aasta3.png',
+      alt: 'Võistlus pilt 6'
+    },
+    {
+      id: 7,
+      image: '/src/assets/images/aasta1.png',
+      alt: 'Võistlus pilt 7'
+    },
+  ];
+
+  const noorMeisterSlides = [
+    {
+      id: 1,
+      image: '/src/assets/images/noor1.png',
+      alt: 'Noor meister pilt 1'
+    },
+    {
+      id: 2,
+      image: '/src/assets/images/noor2.png',
+      alt: 'Noor meister pilt 2'
+    },
+    {
+      id: 3,
+      image: '/src/assets/images/noor3.png',
+      alt: 'Noor meister pilt 3'
+    },
+    {
+      id: 4,
+      image: '/src/assets/images/noor1.png',
+      alt: 'Noor meister pilt 4'
+    },
+    {
+      id: 5,
+      image: '/src/assets/images/noor2.png',
+      alt: 'Noor meister pilt 5'
+    },
+    {
+      id: 6,
+      image: '/src/assets/images/noor3.png',
+      alt: 'Noor meister pilt 6'
+    },
+    {
+      id: 7,
+      image: '/src/assets/images/noor1.png',
+      alt: 'Noor meister pilt 7'
+    },
+  
   ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    setCurrentSlideIndex((prev) => 
+      prev >= slides.length - 3 ? 0 : prev + 1
+    );
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrentSlideIndex((prev) => 
+      prev === 0 ? slides.length - 3 : prev - 1
+    );
+  };
+
+  const nextNoorMeisterSlide = () => {
+    setCurrentNoorMeisterIndex((prev) => 
+      prev >= noorMeisterSlides.length - 3 ? 0 : prev + 1
+    );
+  };
+
+  const prevNoorMeisterSlide = () => {
+    setCurrentNoorMeisterIndex((prev) => 
+      prev === 0 ? noorMeisterSlides.length - 3 : prev - 1
+    );
+  };
+
+  // Funktsioon, mis tagastab hetkel näidatavad 3 pilti
+  const getVisibleSlides = (allSlides: any[], currentIndex: number) => {
+    return allSlides.slice(currentIndex, currentIndex + 3);
   };
 
   return (
-    <>
+    <div className="flex flex-col w-full min-h-screen justify-start items-center md:gap-4" >
       <div 
-        className="w-full h-[300px] flex items-center justify-center bg-black"
+        className="w-full min-h-96 flex items-center justify-center bg-black"
         style={{
           backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url(/src/assets/images/voistlusedtaust.png)',
           backgroundSize: 'cover',
@@ -49,12 +130,15 @@ const Voistlused = () => {
         </h1>
       </div>
 
-      <div className="w-full bg-gray-50">
+      <div className="w-full">
         <div className="max-w-5xl mx-auto px-4 py-12 bg-white">
           <h1 className="text-3xl font-bold mb-4">Kutsevõistlus "Aasta Tegija"</h1>
           
           <p className="text-gray-800 mb-8">
-           On aeg anda stardipauk kutsevõistlustele „Aasta Tegija 2025“! Ehkki esimesed võistlused alustavad juba jaanuaris jääb suurem osa võistlustest siiski märtsikuusse. Kutsemeistrivõistlused toimuvad 37. võistlusalal. Selguvad parimad noored meistrid, kellest mitmed lähevad kooli esindama üleriigilistele ja rahvusvahelistele võistlustele. Iga ala parim pärjatakse 7. märtsil toimuval lõpugalal tiitliga “Aasta Tegija 2025”. IT Akadeemias on võimalik võistelda järgmistel võistlustel:
+            On aeg anda stardipuuk kutsevõistlustele "Aasta Tegija 2025"! Ehkki esimesed võistlused alustavad juba jaanuaris jääb
+            suurem osa võistlustest siiski märtsikuusse. Kutsemeistrivõistlustel toimuvad 37. võistlusalal. Selguvad parimad noored
+            meistrid, kellest mitmed lähevad kooli esindama üleriigilistele rahvusvahelistele võistlustele. Iga ala parim pärjatakse 7.
+            märtsil toimuval lõpugalal tiitliga "Aasta Tegija 2025". IT Akadeemias on võimalik võistelda järgmistel võistlustel:
           </p>
 
           <div className="flex items-center gap-1 mb-6">
@@ -84,7 +168,7 @@ const Voistlused = () => {
             <div className="divide-y divide-white">
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
                 <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
-                  <div>Kopli 1 A-411</div>
+                  <div className="font-bold">Kopli 1 A-411</div>
                   <div>Kopli 1 A-418</div>
                   <div>Kopli 1 A-406</div>
                   <div>Kopli 1 A-310</div>
@@ -93,12 +177,12 @@ const Voistlused = () => {
                   <h3 className="font-bold mb-2">Noorematarkvaraarendaja</h3>
                   <p className="mb-2">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnajäätuseid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kesklikkuse eluviisist.</p>
                   <p className="mb-2">Valmistatud rakendus peab aitama täita mitmeid kesklikkuse eesmärke:</p>
-                  <ul className="list-disc pl-8 space-y-1">
-                    <li>Toidujäätmete vähendamine: Rakendus võimaldab jagada soomeüliõpiliku toitu, mis muidu läheks raisku</li>
-                    <li>Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üleliigset süüa, jagades üle jäävat toitu</li>
-                    <li>Keskkonnateadlik eluviis: Rakendus võimaldab kasutajatel jälgida oma todu tootmiseks ja selle hävitamiseks kuluvat süsinikujalajälge</li>
-                    <li>Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut</li>
-                    <li>Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
+                  <ul className="list-none pl-4 space-y-1">
+                    <li>• Toidujäätmete vähendamine: Rakendus võimaldab jagada soomeüliõpiliku toitu, mis muidu läheks raisku</li>
+                    <li>• Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üleliigset süüa, jagades üle jäävat toitu</li>
+                    <li>• Keskkonnateadlik eluviis: Rakendus võimaldab kasutajatel jälgida oma todu tootmiseks ja selle hävitamiseks kuluvat süsinikujalajälge</li>
+                    <li>• Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut</li>
+                    <li>• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
                   </ul>
                 </div>
                 <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}></div>
@@ -106,7 +190,7 @@ const Voistlused = () => {
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
                 <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
-                  25.-27.02 Kopli 1 A-407
+                  <div className="font-bold">25.-27.02 Kopli 1 A-407</div>
                 </div>
                 <div className="p-4 bg-white">
                   <h3 className="font-bold">UX/UI disaineri kutsevõistlus</h3>
@@ -116,7 +200,7 @@ const Voistlused = () => {
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
                 <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
-                  05.03 Kopli 1 A-303
+                  <div className="font-bold">05.03 Kopli 1 A-303</div>
                 </div>
                 <div className="p-4 bg-white">
                   <h3 className="font-bold">Tarkvaraarendaja (ITA24)</h3>
@@ -126,7 +210,7 @@ const Voistlused = () => {
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
                 <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
-                  05.03 Kopli 1 A-418
+                  <div className="font-bold">05.03 Kopli 1 A-418</div>
                 </div>
                 <div className="p-4 bg-white">
                   <h3 className="font-bold">IT-süsteemide spetsialist</h3>
@@ -153,7 +237,7 @@ const Voistlused = () => {
 
               <div className="divide-y divide-white">
                 <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
                     <div className="font-bold">14. - 16. mai 2025</div>
                     <div>Kuressaare</div>
                     <div>Spordikeskus</div>
@@ -165,63 +249,66 @@ const Voistlused = () => {
                       (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal.
                     </p>
                   </div>
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
-                    <button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded">
+                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
+                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
                       Vaata juhendeid
-                    </button>
+                    </a>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
                   </div>
                   <div className="p-4 bg-white">
                   </div>
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
-                    <button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded">
+                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
+                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
                       Vaata juhendeid
-                    </button>
+                    </a>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
                   </div>
                   <div className="p-4 bg-white">
                   </div>
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
-                    <button className="bg-blue-400 hover:bg-blue-500 text-white py-2 px-4 rounded">
+                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
+                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
                       Vaata juhendeid
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Piltide karussell */}
-          <div className="my-12 bg-gray-200 py-12">
-            <h2 className="text-3xl font-bold mb-8 px-8">Kutsevõistlus "Aasta Tegija"</h2>
+        {/* Piltide karussell - Aasta Tegija */}
+        <div className="w-full bg-gray-200 py-12">
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8">Kutsevõistlus "Aasta Tegija"</h2>
             
-            <div className="relative">
-              <div className="flex justify-center items-center">
+            <div className="relative px-10">
+              <div className="flex justify-between items-center">
                 <button 
                   onClick={prevSlide} 
-                  className="absolute left-4 z-10 text-4xl font-bold text-black hover:text-gray-700"
+                  className="absolute left-0 z-10 text-4xl font-bold text-black hover:text-gray-700"
+                  aria-label="Eelmine pilt"
                 >
                   &#10094;
                 </button>
                 
-                <div className="flex justify-center gap-4 px-16">
-                  {slides.map((slide, index) => (
+                <div className="flex justify-center gap-4 w-full">
+                  {getVisibleSlides(slides, currentSlideIndex).map((slide: any) => (
                     <div 
                       key={slide.id} 
-                      className={`${index === currentSlide ? 'block' : 'hidden'} md:block transition-all duration-300`}
+                      className="flex justify-center items-center w-1/3"
                     >
                       <img 
                         src={slide.image} 
                         alt={slide.alt} 
-                        className="h-80 object-cover rounded shadow-md" 
+                        className="h-60 object-cover rounded shadow-md" 
                       />
                     </div>
                   ))}
@@ -229,7 +316,50 @@ const Voistlused = () => {
                 
                 <button 
                   onClick={nextSlide} 
-                  className="absolute right-4 z-10 text-4xl font-bold text-black hover:text-gray-700"
+                  className="absolute right-0 z-10 text-4xl font-bold text-black hover:text-gray-700"
+                  aria-label="Järgmine pilt"
+                >
+                  &#10095;
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Piltide karussell - Noor Meister */}
+        <div className="w-full bg-gray-100 py-12">
+          <div className="max-w-5xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8">Noor meister</h2>
+            
+            <div className="relative px-10">
+              <div className="flex  justify-between items-center">
+                <button 
+                  onClick={prevNoorMeisterSlide} 
+                  className=" text-4xl font-bold text-black hover:text-gray-700"
+                  aria-label="Eelmine pilt"
+                >
+                  &#10094;
+                </button>
+                
+                <div className="flex justify-center  w-full"> 
+                  {getVisibleSlides(noorMeisterSlides, currentNoorMeisterIndex).map((slide: any) => (
+                    <div 
+                      key={slide.id} 
+                      className=" flex justify-center  items-center w-1/3"
+                    >
+                      <img 
+                        src={slide.image} 
+                        alt={slide.alt} 
+                        className="h-60 object-cover rounded shadow-md" 
+                      />
+                    </div>
+                  ))}
+                </div>
+                
+                <button 
+                  onClick={nextNoorMeisterSlide} 
+                  className="absolute right-0 z-10 text-4xl font-bold text-black hover:text-gray-700"
+                  aria-label="Järgmine pilt"
                 >
                   &#10095;
                 </button>
@@ -238,7 +368,7 @@ const Voistlused = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
