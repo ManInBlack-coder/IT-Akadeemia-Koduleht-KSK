@@ -1,0 +1,403 @@
+{
+  "nadal": "2025-03-03T00:00:00",
+  "tunnid": {
+    "2025-03-03": [
+      {
+        "tund": "2",
+        "algus": "08:30",
+        "lopp": "10:00",
+        "aine": "Koostööaeg; Aasta Tegija; IT Akadeemia koostööaeg; Suurpuhastus_R2",
+        "grupp": "; ITA23; ITA22; VS24; PTt241; ITA24",
+        "opetaja": "Ingrid Sööt; Made Tammepõld; Anna Karutina; ; Raivo Kiisk; Gerly Sepping; Elo Õun; Maiu Praakli; Siiri Kütt; Karin Traks; Laili Kannel; Piret Matto; Helin Liiv; Karin Lindmägi; Helvi Teigar; Moor-Karjus, Hele; Liivi Lõhmussaar; Ene Porroson; Margus Treumuth",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "09:15",
+        "lopp": "11:45",
+        "aine": "Puhastusteenindus (Pärli k)",
+        "grupp": null,
+        "opetaja": "Alina Kuuskla, Ülle Antson",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "10:15",
+        "lopp": "11:45",
+        "aine": "Aasta Tegija; Suurpuhastus_R2",
+        "grupp": "ITA23; ITA22; VS24; PTt241; ITA24",
+        "opetaja": "Anna Karutina; Ene Porroson; Margus Treumuth",
+        "ruum": ""
+      },
+      {
+        "tund": "4",
+        "algus": "11:55",
+        "lopp": "14:00",
+        "aine": "Aasta Tegija; Suurpuhastus_R2",
+        "grupp": "ITA23; ITA22; VS24; PTt241; ITA24",
+        "opetaja": "Anna Karutina; Ene Porroson; Margus Treumuth",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "12:15",
+        "lopp": "15:30",
+        "aine": "Pagari ja kondiitri töö alused (Pärli kool)",
+        "grupp": null,
+        "opetaja": "Ülle Soeson, Ülle Antson",
+        "ruum": ""
+      },
+      {
+        "tund": "5",
+        "algus": "14:10",
+        "lopp": "15:40",
+        "aine": "Aasta Tegija; IT Akadeemia koostööaeg; ",
+        "grupp": "ITA23; ITA22; VS24; ; ITA24",
+        "opetaja": "Anna Karutina; Ene Jõeveer; Liis Karilaid; Kätlin Kask-Adamson; Helve Kooser; Aile Laats; Riina Mändla; Timo Puistaja; Margus Treumuth; Mirjam-Merike Sõmer; Priit Toome; Elis Taur; Reet Kasepalu; Andrus Koka; Risto Korb; Liine Maasikas; Mariliis Maremäe; Triin Muulmann; Martin Mäerand; Astra Pintson - Käo; Sandra Remmelgas; Margit Saar-Sibul; Karl-Markus Sangernebo; Meelis Sõukand; Christofer Uffert; Maret Vaabel; Signe Vedler; ",
+        "ruum": ""
+      },
+      {
+        "tund": "6",
+        "algus": "15:45",
+        "lopp": "17:15",
+        "aine": "Graafiline disain. Praktika; Klienditeenindus",
+        "grupp": "UX24; LM22; LM24",
+        "opetaja": "Sandra Remmelgas; Maire Kask",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "16:00",
+        "lopp": "19:15",
+        "aine": "Finantsandmete analüüs ja aruandlus MS Excelis (veebis)",
+        "grupp": "Finantsandmete analüüs ja aruandlus MS Excelis (veebis)",
+        "opetaja": "Kadi Tamm",
+        "ruum": ""
+      }
+    ],
+    "2025-03-04": [
+      {
+        "tund": "2",
+        "algus": "08:30",
+        "lopp": "10:00",
+        "aine": "Laod; Aasta Tegija; Inventuur; Digipädevuste test",
+        "grupp": "VL24; ; MKo24; AI23",
+        "opetaja": "Tiina Kraav; Andrus Kolonistov; Anni Leosk; ",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "09:00",
+        "lopp": "12:15",
+        "aine": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "grupp": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "opetaja": "Margus Rosin",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "10:15",
+        "lopp": "11:45",
+        "aine": "Laod; Aasta Tegija",
+        "grupp": "VL24; ",
+        "opetaja": "Tiina Kraav; Andrus Kolonistov",
+        "ruum": ""
+      },
+      {
+        "tund": "4",
+        "algus": "11:55",
+        "lopp": "14:00",
+        "aine": "Aasta Tegija",
+        "grupp": "ITA23; ITA22; VS24; ",
+        "opetaja": "Anna Karutina; Andrus Kolonistov",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "14:00",
+        "lopp": "15:30",
+        "aine": "Pagari- ja kondiitritoodete valmistamine (TERA)",
+        "grupp": null,
+        "opetaja": "Ülle Soeson, Ülle Antson",
+        "ruum": ""
+      },
+      {
+        "tund": "5",
+        "algus": "14:10",
+        "lopp": "15:40",
+        "aine": "Aasta Tegija; Rahulolu ja koolikeskkonna küstlus; Spetsialiseerumine: Matkajuht; Kaubavarude täiendamine",
+        "grupp": "; EV123; AI23; VLo24",
+        "opetaja": "Andrus Kolonistov; ; Imre Arro; Anni Leosk",
+        "ruum": ""
+      },
+      {
+        "tund": "6",
+        "algus": "15:45",
+        "lopp": "17:15",
+        "aine": "Lõputöö seminar ja ettevalmistus kutseeksamiks; Üldkehaline ettevalmistus; Spetsialiseerumine: Matkajuht; Klienditeenindus",
+        "grupp": "IS23; AUM24; AI23; LM22; LM24; VL24",
+        "opetaja": "Anna Karutina; Helger Kuusik; Timo Puistaja; Imre Arro; Maire Kask; Kaie Rahulan",
+        "ruum": ""
+      },
+      {
+        "tund": "7",
+        "algus": "17:20",
+        "lopp": "18:50",
+        "aine": "Lõputöö seminar ja ettevalmistus kutseeksamiks; Spetsialiseerumine: Matkajuht",
+        "grupp": "IS23; AI23",
+        "opetaja": "Anna Karutina; Timo Puistaja; Imre Arro",
+        "ruum": ""
+      },
+      {
+        "tund": "8",
+        "algus": "18:55",
+        "lopp": "20:25",
+        "aine": "Spetsialiseerumine: Matkajuht",
+        "grupp": "AI23",
+        "opetaja": "Imre Arro",
+        "ruum": ""
+      }
+    ],
+    "2025-03-05": [
+      {
+        "tund": "2",
+        "algus": "08:30",
+        "lopp": "10:00",
+        "aine": "Aasta Tegija; E-portfoolio koostamine; Sündmuste teenindamine; Õpitee ja töö muutuvas keskkonna",
+        "grupp": "; PPK24; MJ223; KMJo24; MYEo24; MJ22; ILU24",
+        "opetaja": "Ele Nurk; Gerda Ode; Anneli Ummik; Reeli Engelbrecht; Triinu Virnas; Janika Tüvist; ; Iivi Palu",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "09:00",
+        "lopp": "12:15",
+        "aine": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "grupp": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "opetaja": "Margus Rosin",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "10:00",
+        "lopp": "17:00",
+        "aine": "Digiturunduse oskuste arenguprogramm, IX grupp",
+        "grupp": "Digiturunduse oskuste arenguprogramm, IX grupp",
+        "opetaja": "Karin Telling",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "10:15",
+        "lopp": "11:45",
+        "aine": "Aasta Tegija; ; Sündmuste teenindamine; Õpitee ja töö muutuvas keskkonna",
+        "grupp": "; AUM24; MJ223; KMJo24; MYEo24; PTE24; MJ22; TK24; ILU24",
+        "opetaja": "Ele Nurk; ; Reeli Engelbrecht; Triinu Virnas; Janika Tüvist; Ene Reedi; Iivi Palu",
+        "ruum": ""
+      },
+      {
+        "tund": "4",
+        "algus": "11:55",
+        "lopp": "14:00",
+        "aine": "Aasta Tegija; ; Sündmuste teenindamine; Õpitee ja töö muutuvas keskkonna",
+        "grupp": "; AUM24; MJ223; KMJo24; MYEo24; PTE24; MJ22; TK24; ILU24",
+        "opetaja": "Ele Nurk; ; Reeli Engelbrecht; Triinu Virnas; Janika Tüvist; Ene Reedi",
+        "ruum": ""
+      },
+      {
+        "tund": "5",
+        "algus": "14:10",
+        "lopp": "15:40",
+        "aine": "Aasta Tegija; Rahulolu ja koolikeskkonna küstlus; ; Sündmuste teenindamine; Õpitee ja töö muutuvas keskkonna",
+        "grupp": "; ITS24; AUM24; MJ223; KMJo24; MYEo24; MJ22; ILU24",
+        "opetaja": "Ele Nurk; Andrus Koka; ; Reeli Engelbrecht; Triinu Virnas; Janika Tüvist",
+        "ruum": ""
+      },
+      {
+        "tund": "6",
+        "algus": "15:45",
+        "lopp": "17:15",
+        "aine": "; Klienditeenindus; Aasta Tegija",
+        "grupp": "; VL24; ILU24",
+        "opetaja": "; Kaie Rahulan",
+        "ruum": ""
+      },
+      {
+        "tund": "7",
+        "algus": "17:20",
+        "lopp": "18:50",
+        "aine": "Infosüsteemi loomine lõputööna",
+        "grupp": "VS23",
+        "opetaja": "Aly Valvas",
+        "ruum": ""
+      },
+      {
+        "tund": "8",
+        "algus": "18:55",
+        "lopp": "20:25",
+        "aine": "Infosüsteemi loomine lõputööna",
+        "grupp": "VS23",
+        "opetaja": "Aly Valvas",
+        "ruum": ""
+      }
+    ],
+    "2025-03-06": [
+      {
+        "tund": "",
+        "algus": "08:00",
+        "lopp": "08:30",
+        "aine": "Inglise keel",
+        "grupp": null,
+        "opetaja": "Madli Toome",
+        "ruum": ""
+      },
+      {
+        "tund": "2",
+        "algus": "08:30",
+        "lopp": "10:00",
+        "aine": "Õpitee ja töö muutuvas keskkonnas; Inseneriakadeemia koostöötund; kavandab omapoolse panuse väärtuste loomisel enda ja teiste jaoks kultuurilises, sotsiaalses ja/või rahalises tähenduses;; Hoolduskoristus_R2; Transpordigeograafia; Õpi- ja karjääritee; Sündmuste teenindamine; Rahulolu ja koolikeskkonna küstlus",
+        "grupp": "KMV124; ; VSo24; VS24; UX24; PTt242; LM22; PTt241; MJ223; BA23",
+        "opetaja": "Katrin Vaher; Tiina Ilus; Kaire Välb; Adele Sisask; Tiiu Vellevoog; Vilve Pohla; Anette Teesaar; Ann Szmolka-Andreson; Anu Keskpalu-Käspri; Enn Valgma; Getter Hiis-Hommuk; Harri Laustam; Harri Puusepp; Hindrek Sokk; Ismail Mirzojev; Janari Zirk; Jevgeni Kuznetsov; Johannes Soobik; Kaarel Rodima; Kaido Tammepõld; Kaido Voitra; Kalle Teinmann; Karin Andressoo; Kerstin Schmidt; Lembit Arus; Madli Toome; Maicel Pütt; Maksim Tjukin; Marge Kuslap; Marge Raig; Margus Ainsalu; Nikolai Jukin; Marten Madissoo; Mihkel Niitla; Oskar Hint; Raido Vilt; Rait Koort; Rando Koks; Rasmus Saar; Reet Saarep; Reido Orov; Rene Lukk; Tauri Moones; Tauris Vijar; Janika Tüvist; Toomas Sommer; Tõnu Mustjõgi; Valdur Leppik; Vallo Abel; Maris Karafin; Villu Repän; Tanel Plovits; Andreas Liiva; Indrek Alberg; Kaare Jürgenson; Rivo Orujärv; Sandra Remmelgas; Mariliis Maremäe; Dmitri Jurjev; Anni Leosk; Liis Jurjev; Reeli Engelbrecht; Elis Taur",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "09:00",
+        "lopp": "12:15",
+        "aine": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "grupp": "Ettevõtluskoolitus äriplaani koostamiseks",
+        "opetaja": "Margus Rosin",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "10:15",
+        "lopp": "11:45",
+        "aine": "kavandab omapoolse panuse väärtuste loomisel enda ja teiste jaoks kultuurilises, sotsiaalses ja/või rahalises tähenduses;; Majanduse ja ettevõtluse alused; Suurpuhastus; Hoolduskoristus_R2; Sündmuste teenindamine",
+        "grupp": "VSo24; VS24; UX24; KA223; PTt241; PTt242; MJ223",
+        "opetaja": "Sandra Remmelgas; Mariliis Maremäe; Helvi Teigar; Liis Jurjev; Dmitri Jurjev; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "4",
+        "algus": "11:55",
+        "lopp": "14:00",
+        "aine": "Õpi- ja karjääritee II; Hoolduskoristus_R2; Suurpuhastus_R1; Sündmuste teenindamine",
+        "grupp": "KA223; PTt242; PTt241; MJ223",
+        "opetaja": "Piret Neihaus; Dmitri Jurjev; Liis Jurjev; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "5",
+        "algus": "14:10",
+        "lopp": "15:40",
+        "aine": "Suurpuhastus_R1; Suurpuhastus_R2",
+        "grupp": "PTt241; PTt242",
+        "opetaja": "Liis Jurjev; Dmitri Jurjev",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "14:50",
+        "lopp": "16:20",
+        "aine": "Tehnoloogia kursus (Tõrvandi kool)",
+        "grupp": null,
+        "opetaja": "Raido Vilt, Ülle Antson",
+        "ruum": ""
+      },
+      {
+        "tund": "6",
+        "algus": "15:45",
+        "lopp": "17:15",
+        "aine": "Suurpuhastus_R1; Suurpuhastus_R2",
+        "grupp": "PTt241; PTt242",
+        "opetaja": "Liis Jurjev; Dmitri Jurjev",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "16:00",
+        "lopp": "19:15",
+        "aine": "Sotsiaalmeedia turundus",
+        "grupp": "Sotsiaalmeedia turundus",
+        "opetaja": "Liina Luuken",
+        "ruum": ""
+      },
+      {
+        "tund": "7",
+        "algus": "17:20",
+        "lopp": "18:50",
+        "aine": "Suurpuhastus_R2",
+        "grupp": "PTt242",
+        "opetaja": "Dmitri Jurjev",
+        "ruum": ""
+      }
+    ],
+    "2025-03-07": [
+      {
+        "tund": "2",
+        "algus": "08:30",
+        "lopp": "10:00",
+        "aine": "Hoolduskoristus_R1; Erialased dokumendid logistika valdkonnas; Sündmuste teenindamine",
+        "grupp": "PTt242; VL22; MJ223",
+        "opetaja": "Dmitri Jurjev; Tiina Kraav; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "",
+        "algus": "10:00",
+        "lopp": "17:00",
+        "aine": "Digiturunduse oskuste arenguprogramm, IX grupp",
+        "grupp": "Digiturunduse oskuste arenguprogramm, IX grupp",
+        "opetaja": "Karin Telling",
+        "ruum": ""
+      },
+      {
+        "tund": "3",
+        "algus": "10:15",
+        "lopp": "11:45",
+        "aine": "Hoolduskoristus_R1; Rahulolu ja koolikeskkonna küstlus; Erialased dokumendid logistika valdkonnas; Sündmuste teenindamine",
+        "grupp": "PTt242; BA24; VL22; MJ223; MJ22",
+        "opetaja": "Dmitri Jurjev; ; Tiina Kraav; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "4",
+        "algus": "11:55",
+        "lopp": "14:00",
+        "aine": "Hoolduskoristus_R1; Erialased dokumendid logistika valdkonnas; Sündmuste teenindamine",
+        "grupp": "PTt242; VL22; MJ223",
+        "opetaja": "Dmitri Jurjev; Tiina Kraav; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "5",
+        "algus": "14:10",
+        "lopp": "15:40",
+        "aine": "Erialased dokumendid logistika valdkonnas; Suurpuhastus_R1; Sündmuste teenindamine",
+        "grupp": "VL22; PTt242; MJ223",
+        "opetaja": "Tiina Kraav; Dmitri Jurjev; Reeli Engelbrecht",
+        "ruum": ""
+      },
+      {
+        "tund": "6",
+        "algus": "15:45",
+        "lopp": "17:15",
+        "aine": "Klienditeenindus; Suurpuhastus_R1",
+        "grupp": "LM22; LM24; PTt242",
+        "opetaja": "Maire Kask; Dmitri Jurjev",
+        "ruum": ""
+      },
+      {
+        "tund": "7",
+        "algus": "17:20",
+        "lopp": "18:50",
+        "aine": "Suurpuhastus_R1",
+        "grupp": "PTt242",
+        "opetaja": "Dmitri Jurjev",
+        "ruum": ""
+      }
+    ]
+  },
+  "viimane_muudatus": "2025-03-03 15:56:50"
+}
