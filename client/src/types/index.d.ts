@@ -1,4 +1,4 @@
-type Konsultatsioon = {
+type KonsultatsioonType = {
   opetaja: string;
   oppeaine: string;
   paev: string;
@@ -26,12 +26,29 @@ type GrupidData = {
   grupid: Grupp[];
 };
 
-type TunniplaanAjad = {
-  [key: string]: string;
+type ScheduleItem = {
+  tund: string;
+  algus: string;
+  lopp: string;
+  aine: string;
+  grupp: string;
+  opetaja: string;
+  ruum: string;
 };
 
-type Tunniplaan = {
+type ScheduleType = {
   nadal: string;
-  ajad: TunniplaanAjad;
-  tunnid: any[];
+  tunnid: { [key: string]: ScheduleItem[] };
+  ajad: {
+    "1": string;
+    "2": string;
+    "3": string;
+    "4": string;
+    "5": string;
+    "6": string;
+    "7": string;
+    "8": string;
+    "9": string;
+    "soomine": string;
+  };
 };

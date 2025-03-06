@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react"
-import { Table } from "../../components/Table"
 import axios from "axios"
+import { getApiUrl } from "../../utils/functions";
+import { Table } from "../../components/Table";
 
 export const Konsultatsioonid = () => {
-  const [konsultatsioonid, setKonsultatsioonid] = useState<Konsultatsioon[]>([])
+  const [konsultatsioonid, setKonsultatsioonid] = useState<KonsultatsioonType[]>([])
   
   useEffect(() => {
-    axios.get('https://test.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=KPL')
+    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=KPL`)
     .then(response => {
       const data = response.data as KonsultatsioonidData
       setKonsultatsioonid(data.konsultatsioonid)
@@ -37,7 +38,7 @@ export const Konsultatsioonid = () => {
 
         {/* Konsultatsioonide tabel*/}
         <div className="">
-          <Table type="consultations" />
+          
         </div>
 
         { /*Registreeri valitud aeg */}

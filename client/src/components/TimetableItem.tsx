@@ -3,15 +3,15 @@ import React from 'react'
 interface TimetableItemProps {
   title: string
   room: string
-  building: string
+  teacher: string
 }
 
-export const TimetableItem: React.FC<TimetableItemProps> = ({ title, room, building }) => {
+export const TimetableItem: React.FC<TimetableItemProps> = ({ title, room, teacher }) => {
   return (
-    <div>
-      <p>{title}</p>
+    <div className="flex flex-col items-start justify-start w-full">
+      <b>{title}</b>
+      <p>{teacher}</p>
       <p>{room}</p>
-      <p>{building}</p>
     </div>
   )
 }
