@@ -43,6 +43,8 @@ const Tunniplaan = () => {
     if(currentGroup) {
       setCurrentRoom("")
       setTimetableTitle(`Tunniplaan ${groups?.find((group) => group.id === Number(currentGroup))?.tahis}`)
+      setCurrentRoom("")
+      setTimetableTitle(`Tunniplaan ${groups?.find((group) => group.id === Number(currentGroup))?.tahis}`)
       axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${week}&grupp=${currentGroup}`)
       .then(response => {
         const data = response.data as ScheduleType
@@ -59,6 +61,21 @@ const Tunniplaan = () => {
     }
   }, [currentGroup, week])
 
+  useEffect(() => {
+    if(currentRoom) {
+      setCurrentGroup("")
+      setTimetableTitle(`Tunniplaan ${currentRoom}`)
+      axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${new Date().toISOString()}&ruum=${currentRoom}`)
+      .then(response => {
+        const data = response.data as ScheduleType
+        if(!data || !data.tunnid || Object.keys(data.tunnid).length === 0) {
+          setTimetableData(sampleRoomTimetable as ScheduleType)
+        } else {
+          setTimetableData(data)
+        }
+      })
+    }
+  }, [currentRoom])
   useEffect(() => {
     if(currentRoom) {
       setCurrentGroup("")
