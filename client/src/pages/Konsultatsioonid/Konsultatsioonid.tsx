@@ -25,25 +25,7 @@ export const Konsultatsioonid = () => {
           <h1 className="margin top 10px"> ÕPETAJATE KONSULTATSIOONID</h1>
         </div>
 
-
-        {/*Valiku lahtrid*/}
-        <div className="">
-        
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-
-        </div>
-
-        {/* Konsultatsioonide tabel*/}
-        <div className="">
-          
-        </div>
-
-        { /*Registreeri valitud aeg */}
-        <div className=""></div>
-      </div>
+</div>
     </div>
   )
 }

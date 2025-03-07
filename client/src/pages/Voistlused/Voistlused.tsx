@@ -160,29 +160,29 @@ const Voistlused = () => {
 
           <div className="w-full">
             <div className="grid grid-cols-[1fr_2fr_1fr]">
-              <div className="bg-black text-white p-4">AEG JA KOHT</div>
-              <div className="bg-black text-white p-4">VÕISTLUS JA ÜLESANNE</div>
-              <div className="bg-black text-white p-4">VÕITJAD</div>
+              <div className="bg-black text-white p-4 text-large-bold flex justify-center">AEG JA KOHT</div>
+              <div className="bg-black text-white p-4 text-large-bold flex justify-center ">VÕISTLUS JA ÜLESANNE</div>
+              <div className="bg-black text-white p-4 text-large-bold flex justify-center">VÕITJAD</div>
             </div>
 
             <div className="divide-y-4 divide-white">
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
                 <div className="p-4">
-                  <div className="font-bold">Kopli 1 A-411</div>
-                  <div>Kopli 1 A-418</div>
-                  <div>Kopli 1 A-406</div>
-                  <div>Kopli 1 A-310</div>
+                  <div className="font-bold text-base-bold">Kopli 1 A-411</div>
+                  <div className=" text-base-regular ">Kopli 1 A-418</div>
+                  <div className="text-base-regular">Kopli 1 A-406</div>
+                  <div className="text-base-regular">Kopli 1 A-310</div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold mb-2">Noorematarkvaraarendaja</h3>
-                  <p className="mb-2">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnajäätuseid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kesklikkuse eluviisist.</p>
-                  <p className="mb-2">Valmistatud rakendus peab aitama täita mitmeid kesklikkuse eesmärke:</p>
+                  <h3 className="font-bold mb-2 text-heading5-bold">Noorematarkvaraarendaja</h3>
+                  <p className="mb-2 text-base-regular">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnajäätuseid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kesklikkuse eluviisist.</p>
+                  <p className="mb-2 text-base-regular">Valmistatud rakendus peab aitama täita mitmeid kesklikkuse eesmärke:</p>
                   <ul className="list-none pl-4 space-y-1">
-                    <li>• Toidujäätmete vähendamine: Rakendus võimaldab jagada soomeüliõpiliku toitu, mis muidu läheks raisku</li>
-                    <li>• Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üleliigset süüa, jagades üle jäävat toitu</li>
-                    <li>• Keskkonnateadlik eluviis: Rakendus võimaldab kasutajatel jälgida oma todu tootmiseks ja selle hävitamiseks kuluvat süsinikujalajälge</li>
-                    <li>• Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut</li>
-                    <li>• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
+                    <li className="text-base-regular">• Toidujäätmete vähendamine: Rakendus võimaldab jagada soomeüliõpiliku toitu, mis muidu läheks raisku</li>
+                    <li className="text-base-regular">• Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üleliigset süüa, jagades üle jäävat toitu</li>
+                    <li className="text-base-regular">• Keskkonnateadlik eluviis: Rakendus võimaldab kasutajatel jälgida oma todu tootmiseks ja selle hävitamiseks kuluvat süsinikujalajälge</li>
+                    <li className="text-base-regular">• Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut</li>
+                    <li className="text-base-regular">• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
                   </ul>
                 </div>
                 <div className="p-4"></div>
@@ -190,30 +190,30 @@ const Voistlused = () => {
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#E9ECF3' }}>
                 <div className="p-4">
-                  <div className="font-bold">25.-27.02 Kopli 1 A-407</div>
+                  <div className="font-bold text-base-bold">25.-27.02 Kopli 1 A-407</div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold">UX/UI disaineri kutsevõistlus</h3>
+                  <h3 className="font-bold text-heading5-bold">UX/UI disaineri kutsevõistlus</h3>
                 </div>
                 <div className="p-4"></div>
               </div>
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
                 <div className="p-4">
-                  <div className="font-bold">05.03 Kopli 1 A-303</div>
+                  <div className="font-bold text-base-bold">05.03 Kopli 1 A-303</div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold">Tarkvaraarendaja (ITA24)</h3>
+                  <h3 className="font-bold text-heading5-bold">Tarkvaraarendaja (ITA24)</h3>
                 </div>
                 <div className="p-4"></div>
               </div>
 
               <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#E9ECF3' }}>
                 <div className="p-4">
-                  <div className="font-bold">05.03 Kopli 1 A-418</div>
+                  <div className="font-bold text-base-bold">05.03 Kopli 1 A-418</div>
                 </div>
                 <div className="p-4">
-                  <h3 className="font-bold">IT-süsteemide spetsialist</h3>
+                  <h3 className="font-bold text-heading5-bold">IT-süsteemide spetsialist</h3>
                 </div>
                 <div className="p-4"></div>
               </div>
@@ -222,35 +222,35 @@ const Voistlused = () => {
 
           {/* Noor meister sektsioon */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold mb-4">Noor meister</h2>
-            <p className="text-gray-800 mb-8">
+            <h2 className="text-3xl font-bold mb-4 text-heading2-bold">Noor meister</h2>
+            <p className="text-gray-800 mb-8 text-base-regular">
               Noore Meistri nime all on toimuvad kutsemeistrivõistlused alates 2009. aastast. Formaate on mitmeid ja kutsevõistlused
               toimuvad aastaringselt üle Eesti.
             </p>
 
             <div className="w-full">
               <div className="grid grid-cols-[1fr_2fr_1fr]">
-                <div className="bg-black text-white p-4">AEG JA KOHT</div>
-                <div className="bg-black text-white p-4">VÕISTLUS JA SIHTRÜHM</div>
-                <div className="bg-black text-white p-4">JUHENDID</div>
+                <div className="bg-black text-white p-4 text-large-bold flex justify-center">AEG JA KOHT</div>
+                <div className="bg-black text-white p-4 text-large-bold flex justify-center">VÕISTLUS JA SIHTRÜHM</div>
+                <div className="bg-black text-white p-4 text-large-bold flex justify-center">JUHENDID</div>
               </div>
 
               <div className="divide-y-4 divide-white">
                 <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
                   <div className="p-4">
-                    <div className="font-bold">14. - 16. mai 2025</div>
-                    <div>Kuressaare</div>
-                    <div>Spordikeskus</div>
+                    <div className="font-bold text-base-bold">14. - 16. mai 2025</div>
+                    <div className="text-base-regular">Kuressaare</div>
+                    <div className="text-base-regular">Spordikeskus</div>
                   </div>
                   <div className="p-4">
-                    <h3 className="font-bold mb-2">Tarkvaraarendaja</h3>
-                    <p>
+                    <h3 className="font-bold mb-2 text-heading5-bold">Tarkvaraarendaja</h3>
+                    <p className="text-base-regular">
                       Tarkvaraarendaja eriala kutsemeistrivõistlus on mõeldud kuni 26-aastastele (k.a.) noortele
                       (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal.
                     </p>
                   </div>
                   <div className="p-4 flex items-center justify-center">
-                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded text-base-bold">
                       Vaata juhendeid
                     </a>
                   </div>
@@ -262,7 +262,7 @@ const Voistlused = () => {
                   <div className="p-4">
                   </div>
                   <div className="p-4 flex items-center justify-center">
-                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded text-base-bold">
                       Vaata juhendeid
                     </a>
                   </div>
@@ -274,7 +274,7 @@ const Voistlused = () => {
                   <div className="p-4">
                   </div>
                   <div className="p-4 flex items-center justify-center">
-                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded text-base-bold">
                       Vaata juhendeid
                     </a>
                   </div>
@@ -335,13 +335,13 @@ const Voistlused = () => {
               <div className="flex  justify-between items-center">
                 <button 
                   onClick={prevNoorMeisterSlide} 
-                  className=" text-4xl font-bold text-black hover:text-gray-700"
+                  className=" absolute left-0 z-10 text-4xl font-bold text-black hover:text-gray-700"
                   aria-label="Eelmine pilt"
                 >
                   &#10094;
                 </button>
                 
-                <div className="flex justify-center  w-full"> 
+                <div className="flex justify-center gap-4 w-full"> 
                   {getVisibleSlides(noorMeisterSlides, currentNoorMeisterIndex).map((slide: any) => (
                     <div 
                       key={slide.id} 
