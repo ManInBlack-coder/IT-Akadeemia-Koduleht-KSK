@@ -11,19 +11,20 @@ import Voistlused from './pages/Voistlused/Voistlused';
 import { Konsultatsioonid } from './pages/Konsultatsioonid/Konsultatsioonid';
 
 function App() {
-
   return (
     <BrowserRouter>
-      <div className="flex flex-col w-full min-h-screen items-center">
+      <div className="flex flex-col w-full min-h-screen">
         <Header/>
-        <Routes>
-          <Route path="/" element={<Avaleht/>}/>
-          <Route path="/erialad" element={<Erialad/>}/>
-          <Route path="/praktika" element={<Praktika/>}/>
-          <Route path="/tunniplaan" element={<Tunniplaan/>}/>
-          <Route path="/voistlused" element={<Voistlused/>}/>
-          <Route path='konsultatsioonid' element={<Konsultatsioonid/>}/>
-        </Routes>
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Avaleht/>}/>
+            <Route path="/erialad" element={<Erialad/>}/>
+            <Route path="/praktika" element={<Praktika/>}/>
+            <Route path="/tunniplaan" element={<Tunniplaan/>}/>
+            <Route path="/voistlused" element={<Voistlused/>}/>
+            <Route path='konsultatsioonid' element={<Konsultatsioonid/>}/>
+          </Routes>
+        </div>
         <Footer/>
       </div>
     </BrowserRouter>

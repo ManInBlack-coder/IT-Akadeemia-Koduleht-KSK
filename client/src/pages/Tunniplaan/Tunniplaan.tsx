@@ -65,7 +65,7 @@ const Tunniplaan = () => {
     <div className="tunniplaan-bg-one flex flex-col w-full items-center justify-start min-h-screen bg-vocogray">
       <img src={vocoMuster} alt="voco muster" className='absolute top-0 right-0 w-full h-full object-cover'/>
       <div className='flex flex-col items-center justify-center w-full h-full z-10'>
-        <div className='flex flex-col items-center justify-center w-full h-full h-[500px]'>
+        <div className='flex flex-col items-center justify-center w-full h-[240px]'>
           <h1 className='text-heading1-bold text-black text-center'>Õppegruppide tunniplaanid ja õpperuumide plaanid</h1>
         </div>
         {/* Tunniplaanid */}
@@ -73,9 +73,9 @@ const Tunniplaan = () => {
           {/* Tunniplaani filterid */}
           <div className='flex flex-row items-center justify-start w-full h-full gap-4'>
             <div className='flex flex-col items-start justify-center h-full min-w-[200px]'>
-              <label className="text-base-regular text-black">Vali tunniplaan</label>
+              <label className="text-small-medium text-black">Vali tunniplaan</label>
               {groups && (
-                <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full' onChange={(e) => setCurrentGroup(e.target.value)}>
+                <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => setCurrentGroup(e.target.value)}>
                   {groups.map((group) => (
                     <option key={group.id} value={group.id} className='text-base-light text-black bg-white p-4 border border-black'>{group.tahis}</option>
                   ))}
@@ -83,8 +83,8 @@ const Tunniplaan = () => {
               )}
             </div>
             <div className='flex flex-col items-start  justify-center h-full min-w-[200px]'>
-              <label className="text-base-regular text-black">Vali ruum</label>
-              <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full' onChange={(e) => setCurrentRoom(e.target.value)}>
+              <label className="text-small-medium text-black">Vali ruum</label>
+              <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => setCurrentRoom(e.target.value)}>
                 {rooms.map((room) => (
                   <option key={room} className='text-base-light text-black bg-white p-4 border border-black'>{room}</option>
                 ))}
