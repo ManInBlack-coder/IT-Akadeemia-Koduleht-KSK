@@ -166,7 +166,7 @@ const Praktika = () => {
             Alates 2016. aastast liitusime õpirände hartaga ning 2021. aastal omistati Tartu Rakenduslikule Kolledžile Erasmus+ õpirände akrediteering, mis tähendab, et perioodil 2021 – 2027 saab kool lihtsustatud korras toetust uute õpirännete rahastamiseks.
           </p>
         </div>
-        <Button buttonText='Uuri lisaks' color='blue'/>
+        <Button buttonText='Uuri lisaks' color='blue' onClick={() => window.scrollTo({ top: document.getElementById('praktika')?.offsetTop, behavior: 'smooth' })}/>
       </div>
       <div className="flex w-full justify-center items-center min-h-96 bg-vocogray py-8 md:py-12 px-4">
         <div className="flex flex-col md:flex-row w-full md:w-5/6 justify-between items-center gap-8">
@@ -180,7 +180,7 @@ const Praktika = () => {
               <p className="text-base-bold text-itkool hover:underline">Praktika kuupäevad ja kestus</p>
               <img src={arrowRight} alt="arrow"/>
             </div>
-            <Button buttonText="Vaata juhendeid" color='black'/>
+            <Button buttonText="Vaata juhendeid" color='black' onClick={() => window.scrollTo({ top: document.getElementById('documents')?.offsetTop, behavior: 'smooth' })}/>
           </div>
           <div className="w-full md:w-1/2 hidden md:flex justify-center md:justify-end items-center">
             <img src={vocoLogo} alt="voco logo" className="w-3/4 md:w-auto"/>
@@ -221,7 +221,7 @@ const Praktika = () => {
           <h2 className="text-heading2-bold">Meie praktikapartnerid</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-24 md:gap-8">
             {praktikaPartners.map((partner) => (
-              <div className="flex flex-col items-center md:items-start justify-start gap-4">
+              <div key={partner.name} className="flex flex-col items-center md:items-start justify-start gap-4">
                 <h3 className="text-heading5-bold text-itkool">{partner.name}</h3>
                 <p className="text-large-medium">{partner.desc}</p>
                 <img src={partner.logo} height={40}/>
@@ -230,14 +230,15 @@ const Praktika = () => {
           </div>
         </div>  
       </div>
-      <div className="praktika-bg-two flex w-full justify-center items-center min-h-96 py-12 md:py-16 px-4">
+      <div id="praktika" className="praktika-bg-two flex w-full justify-center items-center min-h-96 py-12 md:py-16 px-4">
         <div className="flex relative w-5/6 flex-col justify-center items-center md:items-start gap-8">
           <h2 className="text-heading2-bold text-center md:text-left">Võimalused välispraktikaks</h2>
           <div>
             <h3 className="text-heading5-bold text-center md:text-left">Mida teha, et välismaale praktikale või õppima minna?</h3>
             <br/>            
             <p className="text-base-medium text-center md:text-left">
-              Kõigepealt palume Sul oma huvist märku anda, et teaksime õpirändeid kavandada. Selleks mõtle läbi miks, kuna ja millises riigis sooviksid oma praktikat teha.  Tartu Rakenduslikul Kolledžil on koostööpartnerid peaaegu kõigis Euroopa riikides. Vaata kaarti SIIT.
+              Kõigepealt palume Sul oma huvist märku anda, et teaksime õpirändeid kavandada. Selleks mõtle läbi miks, kuna ja millises riigis sooviksid oma praktikat teha.  Tartu Rakenduslikul Kolledžil on koostööpartnerid peaaegu kõigis Euroopa riikides. Vaata kaarti <a href="https://partnerid.voco.ee" target="_blank" rel="noopener noreferrer" className="underline">SIIT</a>.
+              <br/>
               Soovitame juba ette välispraktika planeerida oma praktikaperioodiga samale ajale. Ja loomulikult kõige tähtsam – mõtle, mis on Su praktika eesmärk ja mida soovid välispraktika raames teha!
               <br/>
               <br/>
@@ -248,11 +249,11 @@ const Praktika = () => {
               Loe õpilaste ja õpetajate õpirände blogisid:
             </p>
           </div>
-          <Button buttonText='VOCOMOBILTY' color='blue'/>
+          <Button buttonText='VOCOMOBILTY' color='blue' onClick={() => window.open("https://en.voco.ee/category/mobility/", "_blank")}/>
           <img className='-z-10 absolute bottom-0 right-10' src={erasmusLogo}/>
         </div>
       </div>
-      <div className="flex w-full justify-center items-center min-h-96 py-8 md:py-12 px-4">
+      <div id="documents"className="flex w-full justify-center items-center min-h-96 py-8 md:py-12 px-4">
         <div className="flex flex-col md:flex-row w-5/6 justify-center items-center gap-8">
           <div className="hidden md:flex w-1/2 justify-center items-center">
             <img src={praktikaDocumentsImage} className="w-full max-w-md"/>
@@ -262,7 +263,7 @@ const Praktika = () => {
             <p className="text-large-medium text-center md:text-left">IT-akadeemia praktikatega seotud juhendid ja materjalid leiad siit.</p>
             <div className="grid grid-cols-2 w-full gap-4">
               {praktikaLinks.map((link) => (
-                <a href={link.link} className='flex justify-start gap-2 items-center'>
+                <a key={link.text} href={link.link} className='flex justify-start gap-2 items-center'>
                   <img src={documentIcon} className="w-5"/>
                   <p className="text-itkool text-base-bold hover:underline">{link.text}</p>
                 </a>

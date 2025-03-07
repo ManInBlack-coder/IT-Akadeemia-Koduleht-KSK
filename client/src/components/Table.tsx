@@ -46,7 +46,7 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
     "soomine": "12:00-12:30"
   };
 
-  // Function to generate a color based on the item's title
+  // Funktsioon, mis geneerib värvi, tiitli hashist lähtudes
   const generateColor = (title: string): string => {
     if(title.length > 0){
       const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
@@ -62,7 +62,6 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
         <h1 className="absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
         <button className="p-1" onClick={() => {
           const newWeek = new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-          console.log(newWeek)
           setWeek(newWeek)
         }}>
           <img src={angle_right} alt="arrow_left" className="rotate-180" />
@@ -70,7 +69,6 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
         <span className="text-lg">{new Date(week).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })} - {new Date(new Date(week).getTime() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
         <button className="p-1" onClick={() => {
           const newWeek = new Date(new Date(week).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-          console.log(newWeek)
           setWeek(newWeek)
         }}>
           <img src={angle_right} alt="arrow_right" />

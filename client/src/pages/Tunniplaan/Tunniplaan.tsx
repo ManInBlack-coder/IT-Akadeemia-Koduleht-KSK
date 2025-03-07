@@ -17,6 +17,7 @@ const Tunniplaan = () => {
   const [timetableTitle, setTimetableTitle] = useState<string>("")
 
   const [rooms, setRooms] = useState<string[]>([
+    "",
     "A401",
     "A402",
     "A403",
@@ -34,12 +35,11 @@ const Tunniplaan = () => {
     axios.get(`${getApiUrl()}/veebilehe_andmed/oppegrupid?seisuga=not_ended`)
     .then(response => {
       const data = response.data as { grupid: Grupp[] }
-      setGroups(data.grupid)
+      setGroups([{id: 0, tahis: "", oppekava: "", kursus: 0}, ...data.grupid])
     })
   }, [])
 
   useEffect(() => {
-    console.log(week)
     if(currentGroup) {
       setCurrentRoom("")
       setTimetableTitle(`Tunniplaan ${groups?.find((group) => group.id === Number(currentGroup))?.tahis}`)
