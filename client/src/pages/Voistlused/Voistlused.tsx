@@ -159,21 +159,21 @@ const Voistlused = () => {
           </div>
 
           <div className="w-full">
-            <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
+            <div className="grid grid-cols-[1fr_2fr_1fr]">
               <div className="bg-black text-white p-4">AEG JA KOHT</div>
               <div className="bg-black text-white p-4">VÕISTLUS JA ÜLESANNE</div>
               <div className="bg-black text-white p-4">VÕITJAD</div>
             </div>
 
-            <div className="divide-y divide-white">
-              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+            <div className="divide-y-4 divide-white">
+              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
+                <div className="p-4">
                   <div className="font-bold">Kopli 1 A-411</div>
                   <div>Kopli 1 A-418</div>
                   <div>Kopli 1 A-406</div>
                   <div>Kopli 1 A-310</div>
                 </div>
-                <div className="p-4 bg-white">
+                <div className="p-4">
                   <h3 className="font-bold mb-2">Noorematarkvaraarendaja</h3>
                   <p className="mb-2">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnajäätuseid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kesklikkuse eluviisist.</p>
                   <p className="mb-2">Valmistatud rakendus peab aitama täita mitmeid kesklikkuse eesmärke:</p>
@@ -185,37 +185,37 @@ const Voistlused = () => {
                     <li>• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
                   </ul>
                 </div>
-                <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}></div>
+                <div className="p-4"></div>
               </div>
 
-              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#E9ECF3' }}>
+                <div className="p-4">
                   <div className="font-bold">25.-27.02 Kopli 1 A-407</div>
                 </div>
-                <div className="p-4 bg-white">
+                <div className="p-4">
                   <h3 className="font-bold">UX/UI disaineri kutsevõistlus</h3>
                 </div>
-                <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}></div>
+                <div className="p-4"></div>
               </div>
 
-              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
+                <div className="p-4">
                   <div className="font-bold">05.03 Kopli 1 A-303</div>
                 </div>
-                <div className="p-4 bg-white">
+                <div className="p-4">
                   <h3 className="font-bold">Tarkvaraarendaja (ITA24)</h3>
                 </div>
-                <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}></div>
+                <div className="p-4"></div>
               </div>
 
-              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                <div className="p-4" style={{ backgroundColor: '#F4F6F9' }}>
+              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#E9ECF3' }}>
+                <div className="p-4">
                   <div className="font-bold">05.03 Kopli 1 A-418</div>
                 </div>
-                <div className="p-4 bg-white">
+                <div className="p-4">
                   <h3 className="font-bold">IT-süsteemide spetsialist</h3>
                 </div>
-                <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}></div>
+                <div className="p-4"></div>
               </div>
             </div>
           </div>
@@ -229,52 +229,52 @@ const Voistlused = () => {
             </p>
 
             <div className="w-full">
-              <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
+              <div className="grid grid-cols-[1fr_2fr_1fr]">
                 <div className="bg-black text-white p-4">AEG JA KOHT</div>
                 <div className="bg-black text-white p-4">VÕISTLUS JA SIHTRÜHM</div>
                 <div className="bg-black text-white p-4">JUHENDID</div>
               </div>
 
-              <div className="divide-y divide-white">
-                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
+              <div className="divide-y-4 divide-white">
+                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
+                  <div className="p-4">
                     <div className="font-bold">14. - 16. mai 2025</div>
                     <div>Kuressaare</div>
                     <div>Spordikeskus</div>
                   </div>
-                  <div className="p-4 bg-white">
+                  <div className="p-4">
                     <h3 className="font-bold mb-2">Tarkvaraarendaja</h3>
                     <p>
                       Tarkvaraarendaja eriala kutsemeistrivõistlus on mõeldud kuni 26-aastastele (k.a.) noortele
                       (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal.
                     </p>
                   </div>
-                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
+                  <div className="p-4 flex items-center justify-center">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
                       Vaata juhendeid
                     </a>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
+                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#E9ECF3' }}>
+                  <div className="p-4">
                   </div>
-                  <div className="p-4 bg-white">
+                  <div className="p-4">
                   </div>
-                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
+                  <div className="p-4 flex items-center justify-center">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
                       Vaata juhendeid
                     </a>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x divide-white">
-                  <div className="p-4" style={{ backgroundColor: '#E9ECF3' }}>
+                <div className="grid grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white" style={{ backgroundColor: '#F4F6F9' }}>
+                  <div className="p-4">
                   </div>
-                  <div className="p-4 bg-white">
+                  <div className="p-4">
                   </div>
-                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }}>
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
+                  <div className="p-4 flex items-center justify-center">
+                    <a href="#" className="bg-[#4BB6E8] hover:bg-blue-500 text-white py-2 px-4 rounded">
                       Vaata juhendeid
                     </a>
                   </div>
