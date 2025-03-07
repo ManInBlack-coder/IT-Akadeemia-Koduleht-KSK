@@ -17,7 +17,7 @@ const createWeekDaysArray = (mondayDate: string): string[] => {
   const weekDays: string[] = [];
   
   // Generate dates for Monday through Friday
-  for (let i = 1; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     const currentDate = new Date(monday);
     currentDate.setDate(monday.getDate() + i);
     
@@ -38,9 +38,17 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
     <div className="overflow-x-auto mt-4">
       <div className="flex justify-center items-center gap-2 bg-white border p-4 relative">
         <h1 className="absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
-        <button className="p-1" onClick={() => setWeek(new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])}>&lt;</button>
+        <button className="p-1" onClick={() => {
+          const newWeek = new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+          console.log(newWeek)
+          setWeek(newWeek)
+        }}>&lt;</button>
         <span className="text-lg">{new Date(week).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })} - {new Date(new Date(week).getTime() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
-        <button className="p-1" onClick={() => setWeek(new Date(new Date(week).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0])}>&gt;</button>
+        <button className="p-1" onClick={() => {
+          const newWeek = new Date(new Date(week).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+          console.log(newWeek)
+          setWeek(newWeek)
+        }}>&gt;</button>
       </div>
 
       <table className="w-full border-collapse border border-gray-300 bg-white table-fixed">

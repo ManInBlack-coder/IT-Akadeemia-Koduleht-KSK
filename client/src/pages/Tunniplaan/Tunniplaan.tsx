@@ -9,7 +9,7 @@ import sampleRoomTimetable from './sampleRoomTimetable.json'
 const Tunniplaan = () => {
   const today = new Date();
   const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 1));
-  const formattedDate = firstDayOfWeek.toISOString().split('T')[0] + 'T00:00:00';
+  const formattedDate = firstDayOfWeek.toISOString().split('T')[0];
   const [week, setWeek] = useState<string>(formattedDate)
   const [currentRoom, setCurrentRoom] = useState<string>("")
   const [currentGroup, setCurrentGroup] = useState<string>("")
@@ -29,6 +29,7 @@ const Tunniplaan = () => {
   }, [])
 
   useEffect(() => {
+    console.log(week)
     if(currentGroup) {
       axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${week}&grupp=${currentGroup}`)
       .then(response => {
