@@ -16,8 +16,9 @@ export default {
           tehnikakool: "#0089CF",
           ilukool: "#B41E8E",
           koolitused: "#00B89D",
-          vocogray: "#F4F6F9"
-      
+          vocogray: "#F4F6F9",
+          lightvocogray: "#E9ECF3"
+          
       }
     },
   },
