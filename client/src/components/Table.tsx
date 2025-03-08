@@ -92,7 +92,13 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
                           room={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.ruum || ""}
                         />
                       ) : (
-                        <ConsultationItem />
+                        <ConsultationItem 
+                          teacher={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.opetaja || ""}
+                          subject={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.aine || ""}
+                          room={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.ruum || ""}
+                          additionalInfo={null}
+                          time={`${data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.algus || ""}-${data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.lopp || ""}`}
+                        />
                       )}
                     </td>
                   ))}
