@@ -1,11 +1,24 @@
-.button-hover{
+.button-hover-blue{
     transition: 200ms;
 }
-.button-hover:hover{
+.button-hover-blue:hover{
     transform: translate(0px, -2px);
     box-shadow: 0px 2px 0px #1ba8d3
 }
-.button-hover:active{
+.button-hover-blue:active{
     transform: translate(0px, -1px);
     box-shadow: 0px 1px 0px #1ba8d3
 }
+
+.button-hover-black{
+    transition: 200ms;
+}
+.button-hover-black:hover{
+    transform: translate(0px, -2px);
+    box-shadow: 0px 2px 0px #2a2a2a
+}
+.button-hover-black:active{
+    transform: translate(0px, -1px);
+    box-shadow: 0px 1px 0px #2a2a2a
+}
+
