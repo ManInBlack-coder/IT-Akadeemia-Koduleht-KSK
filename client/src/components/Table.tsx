@@ -47,10 +47,13 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // Funktsioon, mis geneerib värvi, tiitli hashist lähtudes
 =======
   // Function to generate a color based on the item's title
 >>>>>>> dee4c12 (fix: room filter and color coded classes on timetable)
+=======
+>>>>>>> 9cc4d2c (chore: merge success pt2)
   const generateColor = (title: string): string => {
     if(title.length > 0){
       const hash = title.split('').reduce((acc, char) => char.charCodeAt(0) + acc, 0);
