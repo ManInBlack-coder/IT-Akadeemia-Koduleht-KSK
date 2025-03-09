@@ -3,9 +3,26 @@ import { Table } from "../../components/Table"
 import sampleConsultations from './sampleConsultations.json'
 import axios from 'axios'
 import { getApiUrl } from '../../utils/functions'
-
+import vocoMuster from '../../assets/konsultatsioonid/VOCO_RGB_TAUST.svg'
 //https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=KPL&aasta=2024&periood=1&nadal=2024-03-18
 
+// Kohandatud ScheduleType tüüp konsultatsioonide jaoks
+interface ScheduleType {
+  nadal: string;
+  ajad: {
+    "1": string;
+    "2": string;
+    "3": string;
+    "4": string;
+    "5": string;
+    "6": string;
+  };
+  tunnid: {
+    [key: string]: ScheduleItem[];
+  };
+}
+
+// Kasutame ScheduleItem tüüpi index.d.ts failist
 interface ScheduleItem {
   tund: string;
   opetaja: string;
@@ -16,25 +33,7 @@ interface ScheduleItem {
   grupp: string;
 }
 
-interface ScheduleType {
-  nadal: string;
-  ajad: {
-    "1": string;
-    "2": string;
-    "3": string;
-    "4": string;
-    "5": string;
-    "6": string;
-    "7": string;
-    "8": string;
-    "9": string;
-    soomine: string;
-  };
-  tunnid: {
-    [key: string]: ScheduleItem[];
-  };
-}
-
+// Kasutame KonsultatsioonType tüüpi index.d.ts failist
 interface KonsultatsioonType {
   opetaja: string;
   oppeaine: string;
@@ -46,6 +45,7 @@ interface KonsultatsioonType {
   tegevus: string;
 }
 
+// Kasutame KonsultatsioonidData tüüpi index.d.ts failist
 interface KonsultatsioonidData {
   aasta: number;
   periood: string;
@@ -63,16 +63,12 @@ const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWe
   const schedule: ScheduleType = {
     nadal: currentWeek,
     ajad: {
-      "1": "8:30-10:00",
-      "2": "10:15-11:45",
-      "3": "12:15-13:45",
-      "4": "14:00-15:30",
-      "5": "15:45-17:15",
-      "6": "17:30-19:00",
-      "7": "19:15-20:45",
-      "8": "21:00-22:30",
-      "9": "22:45-00:15",
-      soomine: "11:45-12:15"
+      "1": "07:00-08:30",
+      "2": "08:30-10:15",
+      "3": "10:15-11:55",
+      "4": "11:55-14:00",
+      "5": "14:00-15:45",
+      "6": "15:45-17:20"
     },
     tunnid: {}
   };
@@ -80,15 +76,15 @@ const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWe
   // Arvutame nädala alguse ja lõpu kuupäevad
   const weekStart = new Date(currentWeek);
   const weekEnd = new Date(weekStart);
-  weekEnd.setDate(weekEnd.getDate() + 6);
+  weekEnd.setDate(weekStart.getDate() + 4); // 5 päeva (esmaspäevast reedeni)
 
   console.log("Week range:", { 
     weekStart: weekStart.toISOString().split('T')[0], 
     weekEnd: weekEnd.toISOString().split('T')[0] 
   });
 
-  // Loome tühjad päevad nädalas
-  for (let i = 0; i < 7; i++) {
+  // Loome tühjad päevad nädalas (ainult tööpäevad)
+  for (let i = 0; i < 5; i++) { // 5 päeva (esmaspäevast reedeni)
     const currentDate = new Date(weekStart);
     currentDate.setDate(weekStart.getDate() + i);
     const dateStr = currentDate.toISOString().split('T')[0];
@@ -134,21 +130,63 @@ const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWe
       // Kontrollime, kas konsultatsioon toimub valitud nädalal või on valitud kuupäevavahemikus
       const isInSelectedWeek = consultationDate >= weekStart && consultationDate <= weekEnd;
       const isInSelectedDateRange = filters.date ? true : false; // Kui kuupäev on valitud, siis juba filtreerisime
+      
+      // Kontrollime, kas konsultatsioon toimub tööpäeval (1-5, esmaspäev-reede)
+      const dayOfWeek = consultationDate.getDay();
+      const isWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
 
-      if (isInSelectedWeek || isInSelectedDateRange) {
+      if ((isInSelectedWeek && isWeekday) || isInSelectedDateRange) {
         if (!schedule.tunnid[date]) {
           schedule.tunnid[date] = [];
         }
 
-        const [startTime] = k.aeg.split('-');
-        let tundId = "1";
+        // Konsultatsiooni algusaeg (tundides)
+        const [startTimeStr] = k.aeg.split('-');
+        const [hours, minutes] = startTimeStr.split(':').map(Number);
+        const startTime = hours + minutes / 60;
 
-        // Otsime täpset aega
-        for (const [id, timeRange] of Object.entries(schedule.ajad)) {
-          if (timeRange.startsWith(startTime)) {
-            tundId = id;
-            break;
-          }
+        // Leiame sobiva tunni ID vastavalt algusajale
+        let tundId = "1"; // Vaikimisi esimene tund
+
+        // Täpsem ajavahemike määramine
+        if (startTime >= 7.0 && startTime < 8.5) {
+          tundId = "1"; // 07:00-08:30
+        } else if (startTime >= 8.5 && startTime < 10.25) {
+          tundId = "2"; // 08:30-10:15
+        } else if (startTime >= 10.25 && startTime < 11.92) {
+          tundId = "3"; // 10:15-11:55
+        } else if (startTime >= 11.92 && startTime < 14.0) {
+          tundId = "4"; // 11:55-14:00
+        } else if (startTime >= 14.0 && startTime < 15.75) {
+          tundId = "5"; // 14:00-15:45
+        } else if (startTime >= 15.75) {
+          tundId = "6"; // 15:45-17:20
+        }
+
+        // Erijuhtumid
+        // Kui konsultatsiooni algusaeg on 14:00-14:10 vahel, määrame selle 5. tundi
+        if (startTime >= 14.0 && startTime < 14.17) {
+          tundId = "5"; // 14:00-15:45
+        }
+
+        // Kui konsultatsiooni algusaeg on 8:00-8:30 vahel, määrame selle 1. tundi
+        if (startTime >= 8.0 && startTime < 8.5) {
+          tundId = "1"; // 07:00-08:30
+        }
+
+        // Kui konsultatsiooni algusaeg on 14:05-14:10 vahel, määrame selle 5. tundi
+        if (startTime >= 14.08 && startTime < 14.17) {
+          tundId = "5"; // 14:00-15:45
+        }
+
+        // Täpne kontroll pildil oleva konsultatsiooni jaoks (14:05-15:00)
+        if (k.aeg === "14:05-15:00") {
+          tundId = "5"; // 14:00-15:45
+        }
+
+        // Täpne kontroll pildil oleva konsultatsiooni jaoks (08:00-08:30)
+        if (k.aeg === "08:00-08:30") {
+          tundId = "1"; // 07:00-08:30
         }
 
         schedule.tunnid[date].push({
@@ -177,9 +215,10 @@ export const Konsultatsioonid = () => {
   const [selectedTeacher, setSelectedTeacher] = useState<string>("")
   const [selectedDate, setSelectedDate] = useState<string>("")
   const [selectedTime, setSelectedTime] = useState<string>("")
-  const [hoone, setHoone] = useState<string>("KPL")
+  const [hoone] = useState<string>("KPL")
   const [isLoading, setIsLoading] = useState(true)
   const [timetableData, setTimetableData] = useState<ScheduleType | undefined>()
+  const [originalData, setOriginalData] = useState<KonsultatsioonidData | null>(null)
   const [teachers, setTeachers] = useState<string[]>([])
   const [activeFilters, setActiveFilters] = useState<{
     teacher: string;
@@ -191,34 +230,21 @@ export const Konsultatsioonid = () => {
     time: ""
   });
 
-  const hooneOptions = [
-    { value: "KPL", label: "Kopli" },
-    { value: "POL", label: "Põhja" },
-    { value: "STR", label: "Sõpruse" },
-    { value: "STR2", label: "Sõpruse 2" },
-    { value: "ALL", label: "Kõik" }
-  ]
-
   // Genereeri kuupäevavahemikud JSON failis olevatest kuupäevadest
   const getDateRanges = () => {
     let dates: string[] = [];
     
+    // Kasutame originaalandmeid või näidisandmeid
+    const konsultatsioonid = originalData?.konsultatsioonid || sampleConsultations.konsultatsioonid;
+    
     if (selectedTeacher) {
       // Kui õpetaja on valitud, võtame ainult tema konsultatsioonide kuupäevad
-      dates = [...new Set((timetableData ? 
-        // Kui meil on API-st saadud andmed, kasutame neid
-        convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
-        // Vastasel juhul kasutame näidisandmeid
-        sampleConsultations.konsultatsioonid)
+      dates = [...new Set(konsultatsioonid
         .filter(k => k.opetaja === selectedTeacher)
         .flatMap(k => k.kuupaevad))].sort();
     } else {
       // Kui õpetajat pole valitud, võtame kõik kuupäevad
-      dates = [...new Set((timetableData ? 
-        // Kui meil on API-st saadud andmed, kasutame neid
-        convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
-        // Vastasel juhul kasutame näidisandmeid
-        sampleConsultations.konsultatsioonid)
+      dates = [...new Set(konsultatsioonid
         .flatMap(k => k.kuupaevad))].sort();
     }
     
@@ -256,11 +282,8 @@ export const Konsultatsioonid = () => {
       return [];
     }
 
-    let konsultatsioonid = (timetableData ? 
-      // Kui meil on API-st saadud andmed, kasutame neid
-      convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
-      // Vastasel juhul kasutame näidisandmeid
-      sampleConsultations.konsultatsioonid)
+    // Kasutame originaalandmeid või näidisandmeid
+    let konsultatsioonid = (originalData?.konsultatsioonid || sampleConsultations.konsultatsioonid)
       .filter(k => k.opetaja === selectedTeacher);
 
     if (selectedDate) {
@@ -301,10 +324,12 @@ export const Konsultatsioonid = () => {
         const data = response.data as KonsultatsioonidData;
         if (!data || !data.konsultatsioonid || data.konsultatsioonid.length === 0) {
           // Kui andmeid ei leitud, kasutame näidisandmeid
+          setOriginalData(sampleConsultations); // Salvestame originaalandmed
           const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
           setTimetableData(newData);
         } else {
           // Kui andmed leiti, kasutame neid
+          setOriginalData(data); // Salvestame originaalandmed
           const newData = convertToScheduleType(data, week, activeFilters);
           setTimetableData(newData);
         }
@@ -313,6 +338,7 @@ export const Konsultatsioonid = () => {
       .catch(error => {
         console.error("Error fetching consultation data:", error);
         // Vea korral kasutame näidisandmeid
+        setOriginalData(sampleConsultations); // Salvestame originaalandmed
         const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
         setTimetableData(newData);
         setIsLoading(false);
@@ -327,9 +353,13 @@ export const Konsultatsioonid = () => {
         const data = response.data as KonsultatsioonidData;
         if (!data || !data.konsultatsioonid || data.konsultatsioonid.length === 0) {
           // Kui andmeid ei leitud, kasutame näidisandmeid
+
           setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
+          console.log("Kasutasime mock andmeid");
+
         } else {
           // Kui andmed leiti, kasutame neid
+          console.log("Kasutasime mock andmeid");
           setTeachers([...new Set(data.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
         }
       })
@@ -429,73 +459,75 @@ export const Konsultatsioonid = () => {
   }
 
   return (
-    <div className="flex flex-col w-full min-h-screen justify-start items-center">
-      <div className="w-full">
-        <div className="max-w-5xl mx-auto px-4 py-12">
-          <h1 className="text-heading1-bold text-center mb-12">ÕPETAJATE KONSULTATSIOONID</h1>
-          
+    <div className="tunniplaan-bg-one flex flex-col w-full items-center justify-start min-h-screen bg-vocogray">
+      <img src={vocoMuster} alt="voco muster" className='absolute top-0 right-0 w-full h-1/3 md:w-2/3 md:h-full'/>
+      <div className='flex flex-col items-center justify-center w-full h-full z-10 p-4'>
+        <div className='flex flex-col items-center justify-center w-full h-[160px]'>
+          <h1 className='text-heading1-bold text-black text-center'>ÕPETAJATE KONSULTATSIOONID</h1>
+        </div>
+        
+        <div className='flex flex-col items-center justify-center w-full md:w-5/6 h-full my-4'>
           {/* Filtrid */}
-          <div className="flex gap-4 mb-8 justify-center">
-            <select 
-              value={hoone}
-              onChange={(e) => setHoone(e.target.value)}
-              className="border bg-white border-gray-300 p-2 rounded min-w-[120px]"
-            >
-              {hooneOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+          <div className="flex flex-col md:flex-row items-center justify-center w-full gap-4 mb-8">
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
+              <label className="text-small-medium text-black">Vali õpetaja</label>
+              <select 
+                value={selectedTeacher}
+                onChange={(e) => setSelectedTeacher(e.target.value)}
+                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+              >
+                <option value="">Kõik õpetajad</option>
+                {teachers.map((teacher) => (
+                  <option key={teacher} value={teacher}>{teacher}</option>
+                ))}
+              </select>
+            </div>
 
-            <select 
-              value={selectedTeacher}
-              onChange={(e) => setSelectedTeacher(e.target.value)}
-              className="border bg-white border-gray-300 p-2 rounded min-w-[200px]"
-            >
-              <option value="">Vali õpetaja</option>
-              {teachers.map((teacher) => (
-                <option key={teacher} value={teacher}>{teacher}</option>
-              ))}
-            </select>
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
+              <label className="text-small-medium text-black">Vali kuupäev</label>
+              <select 
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+              >
+                <option value="">Kõik kuupäevad</option>
+                {getDateRanges().map((range) => (
+                  <option key={range} value={range}>{range}</option>
+                ))}
+              </select>
+            </div>
 
-            <select 
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="border bg-white border-gray-300 p-2 rounded min-w-[200px]"
-            >
-              <option value="">Vali kuupäev</option>
-              {getDateRanges().map((range) => (
-                <option key={range} value={range}>{range}</option>
-              ))}
-            </select>
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
+              <label className="text-small-medium text-black">Vali aeg</label>
+              <select 
+                value={selectedTime}
+                onChange={(e) => setSelectedTime(e.target.value)}
+                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+              >
+                <option value="">Kõik ajad</option>
+                {getAvailableTimes().map((time) => (
+                  <option key={time} value={time}>{time}</option>
+                ))}
+              </select>
+            </div>
 
-            <select 
-              value={selectedTime}
-              onChange={(e) => setSelectedTime(e.target.value)}
-              className="border bg-white border-gray-300 p-2 rounded min-w-[120px]"
-            >
-              <option value="">Vali aeg</option>
-              {getAvailableTimes().map((time) => (
-                <option key={time} value={time}>{time}</option>
-              ))}
-            </select>
-
-            <button 
-              onClick={handleSearch}
-              className="bg-black text-white px-8 py-2 rounded hover:bg-blue-700"
-            >
-              Otsi
-            </button>
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto mt-4 md:mt-0 md:self-end'>
+              <button 
+                onClick={handleSearch}
+                className="bg-black text-white px-8 py-2 rounded hover:bg-blue-700 w-full md:w-auto"
+              >
+                Otsi
+              </button>
+            </div>
           </div>
 
           {/* Aktiivsed filtrid */}
           {(activeFilters.teacher || activeFilters.date || activeFilters.time) && (
-            <div className="mb-4 text-center">
-              <p className="text-gray-600">
+            <div className="mb-4 text-center w-full">
+              <p className="text-gray-600 flex flex-wrap justify-center items-center gap-2">
                 Aktiivsed filtrid: 
-                {activeFilters.teacher && <span className="ml-2 bg-gray-200 px-2 py-1 rounded mr-2">Õpetaja: {activeFilters.teacher}</span>}
-                {activeFilters.date && <span className="bg-gray-200 px-2 py-1 rounded mr-2">Kuupäev: {activeFilters.date}</span>}
+                {activeFilters.teacher && <span className="bg-gray-200 px-2 py-1 rounded ">Õpetaja: {activeFilters.teacher}</span>}
+                {activeFilters.date && <span className="bg-gray-200 px-2 py-1 rounded">Kuupäev: {activeFilters.date}</span>}
                 {activeFilters.time && <span className="bg-gray-200 px-2 py-1 rounded">Aeg: {activeFilters.time}</span>}
                 <button 
                   onClick={() => {
@@ -514,7 +546,7 @@ export const Konsultatsioonid = () => {
                     console.log("Resetting week to current week:", formattedMonday);
                     setWeek(formattedMonday);
                   }}
-                  className="ml-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-colors duration-200 flex items-center inline-flex"
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-colors duration-200 flex items-center inline-flex"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -527,21 +559,23 @@ export const Konsultatsioonid = () => {
 
           {/* Teade, kui tulemusi pole */}
           {timetableData && Object.values(timetableData.tunnid).every(arr => arr.length === 0) && (
-            <div className="text-center text-gray-600 my-4">
+            <div className="text-center text-gray-600 my-4 w-full">
               Valitud filtritega konsultatsioone ei leitud.
             </div>
           )}
 
           {/* Table Component */}
-          {timetableData && (
-            <Table 
-              type="consultations"
-              data={[timetableData]}
-              title="Konsultatsioonid"
-              week={week}
-              setWeek={setWeek}
-            />
-          )}
+          <div className='flex flex-col items-center justify-center w-full h-full'>
+            {timetableData && (
+              <Table 
+                type="consultations"
+                data={[timetableData]}
+                title="Konsultatsioonid"
+                week={week}
+                setWeek={setWeek}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

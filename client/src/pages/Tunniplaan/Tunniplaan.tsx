@@ -77,16 +77,16 @@ const Tunniplaan = () => {
 
   return (
     <div className="tunniplaan-bg-one flex flex-col w-full items-center justify-start min-h-screen bg-vocogray">
-      <img src={vocoMuster} alt="voco muster" className='absolute top-0 right-0 w-2/3 h-full'/>
-      <div className='flex flex-col items-center justify-center w-full h-full z-10'>
-        <div className='flex flex-col items-center justify-center w-3/4 md:w-full h-[240px] md:h-[160px]'>
+      <img src={vocoMuster} alt="voco muster" className='absolute top-0 right-0 w-full h-1/3 md:w-2/3 md:h-full'/>
+      <div className='flex flex-col items-center justify-center w-full h-full z-10 p-4'>
+        <div className='flex flex-col items-center justify-center w-full h-[160px]'>
           <h1 className='text-heading1-bold text-black text-center'>Õppegruppide tunniplaanid ja õpperuumide plaanid</h1>
         </div>
         {/* Tunniplaanid */}
-        <div className='flex flex-col items-center justify-center w-5/6 h-full my-4'>
+        <div className='flex flex-col items-center justify-center w-full md:w-5/6 h-full my-4'>
           {/* Tunniplaani filterid */}
           <div className='flex flex-row items-center justify-start w-full h-full gap-4'>
-            <div className='flex flex-col items-start justify-center h-full min-w-[200px]'>
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-[200px]'>
               <label className="text-small-medium text-black">Vali tunniplaan</label>
               {groups && (
                 <select className='text-base-regular text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => setCurrentGroup(e.target.value)}>
@@ -96,7 +96,7 @@ const Tunniplaan = () => {
                 </select>
               )}
             </div>
-            <div className='flex flex-col items-start  justify-center h-full min-w-[200px]'>
+            <div className='flex flex-col items-start justify-center h-full w-full md:w-[200px]'>
               <label className="text-small-medium text-black">Vali ruum</label>
               <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => {setCurrentRoom(e.target.value)}}>
                 {rooms.map((room) => (
