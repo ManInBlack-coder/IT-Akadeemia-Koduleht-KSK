@@ -50,7 +50,14 @@ interface KonsultatsioonidData {
   konsultatsioonid: KonsultatsioonType[];
 }
 
-const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWeek: string): ScheduleType => {
+const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWeek: string, filters: {
+  teacher: string;
+  date: string;
+  time: string;
+}): ScheduleType => {
+  console.log("Converting to schedule with filters:", filters);
+  console.log("Current week:", currentWeek);
+
   const schedule: ScheduleType = {
     nadal: currentWeek,
     ajad: {
@@ -68,50 +75,79 @@ const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWe
     tunnid: {}
   };
 
-  // Loome aja ja tunni ID vastavuse
-  const timeToId: { [key: string]: string } = {
-    "8:30": "1",
-    "10:15": "2",
-    "12:15": "3",
-    "14:00": "4",
-    "15:45": "5",
-    "17:30": "6",
-    "19:15": "7",
-    "21:00": "8",
-    "22:45": "9"
-  };
+  // Arvutame nädala alguse ja lõpu kuupäevad
+  const weekStart = new Date(currentWeek);
+  const weekEnd = new Date(weekStart);
+  weekEnd.setDate(weekEnd.getDate() + 6);
 
-  // Genereerime nädala kuupäevad
-  const weekDays: string[] = [];
-  const monday = new Date(currentWeek);
-  
-  for (let i = 0; i < 5; i++) {
-    const currentDate = new Date(monday);
-    currentDate.setDate(monday.getDate() + i);
-    weekDays.push(currentDate.toISOString().split('T')[0]);
-  }
-
-  // Initsialiseerime iga päeva tühja massiiviga
-  weekDays.forEach(day => {
-    schedule.tunnid[day] = [];
+  console.log("Week range:", { 
+    weekStart: weekStart.toISOString().split('T')[0], 
+    weekEnd: weekEnd.toISOString().split('T')[0] 
   });
 
-  // Loome dünaamilise päevade kaardi
-  const dayMap: { [key: string]: string } = {
-    'E': weekDays[0],
-    'T': weekDays[1],
-    'K': weekDays[2],
-    'N': weekDays[3],
-    'R': weekDays[4]
-  };
+  // Loome tühjad päevad nädalas
+  for (let i = 0; i < 7; i++) {
+    const currentDate = new Date(weekStart);
+    currentDate.setDate(weekStart.getDate() + i);
+    const dateStr = currentDate.toISOString().split('T')[0];
+    schedule.tunnid[dateStr] = [];
+  }
 
-  // Lisame konsultatsioonid vastavatele päevadele
-  konsultatsioonid.konsultatsioonid.forEach(k => {
-    k.paev.split(', ').forEach(day => {
-      const date = dayMap[day];
-      if (date) {
+  // Filtreerime konsultatsioonid
+  let filteredConsultations = [...konsultatsioonid.konsultatsioonid];
+
+  if (filters.teacher) {
+    filteredConsultations = filteredConsultations.filter(k => k.opetaja === filters.teacher);
+  }
+
+  if (filters.time) {
+    filteredConsultations = filteredConsultations.filter(k => k.aeg.startsWith(filters.time));
+  }
+
+  if (filters.date) {
+    const [startStr, endStr] = filters.date.split('-');
+    const start = new Date(startStr.split('.').reverse().join('-'));
+    const end = new Date(endStr.split('.').reverse().join('-'));
+
+    console.log("Date filter range:", { 
+      start: start.toISOString().split('T')[0], 
+      end: end.toISOString().split('T')[0] 
+    });
+
+    filteredConsultations = filteredConsultations.filter(k => 
+      k.kuupaevad.some(date => {
+        const current = new Date(date);
+        return current >= start && current <= end;
+      })
+    );
+  }
+
+  console.log("Filtered consultations:", filteredConsultations);
+
+  // Lisame filtreeritud konsultatsioonid tunniplaani
+  filteredConsultations.forEach(k => {
+    k.kuupaevad.forEach(date => {
+      const consultationDate = new Date(date);
+      
+      // Kontrollime, kas konsultatsioon toimub valitud nädalal või on valitud kuupäevavahemikus
+      const isInSelectedWeek = consultationDate >= weekStart && consultationDate <= weekEnd;
+      const isInSelectedDateRange = filters.date ? true : false; // Kui kuupäev on valitud, siis juba filtreerisime
+
+      if (isInSelectedWeek || isInSelectedDateRange) {
+        if (!schedule.tunnid[date]) {
+          schedule.tunnid[date] = [];
+        }
+
         const [startTime] = k.aeg.split('-');
-        const tundId = timeToId[startTime] || "1"; // Kui ei leia vastet, kasutame esimest tundi
+        let tundId = "1";
+
+        // Otsime täpset aega
+        for (const [id, timeRange] of Object.entries(schedule.ajad)) {
+          if (timeRange.startsWith(startTime)) {
+            tundId = id;
+            break;
+          }
+        }
 
         schedule.tunnid[date].push({
           tund: tundId,
@@ -126,13 +162,7 @@ const convertToScheduleType = (konsultatsioonid: KonsultatsioonidData, currentWe
     });
   });
 
-  // Sorteerime konsultatsioonid aja järgi
-  Object.keys(schedule.tunnid).forEach(date => {
-    schedule.tunnid[date].sort((a, b) => {
-      return a.algus.localeCompare(b.algus);
-    });
-  });
-
+  console.log("Final schedule:", schedule);
   return schedule;
 };
 
@@ -149,7 +179,15 @@ export const Konsultatsioonid = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [timetableData, setTimetableData] = useState<ScheduleType | undefined>()
   const [teachers, setTeachers] = useState<string[]>([])
-  const [filteredData, setFilteredData] = useState<ScheduleType | undefined>()
+  const [activeFilters, setActiveFilters] = useState<{
+    teacher: string;
+    date: string;
+    time: string;
+  }>({
+    teacher: "",
+    date: "",
+    time: ""
+  });
 
   const hooneOptions = [
     { value: "KPL", label: "Kopli" },
@@ -159,92 +197,123 @@ export const Konsultatsioonid = () => {
     { value: "ALL", label: "Kõik" }
   ]
 
-  const timeOptions = [
-    "8:30", "9:00", "9:30", "10:00", "10:30", "11:00", "11:30",
-    "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
-    "15:00", "15:30", "16:00", "16:30", "17:00"
-  ]
-
-  useEffect(() => {
-    setIsLoading(true);
-    // Kasutame ainult sampleConsultations andmeid
-    setTimetableData(convertToScheduleType(sampleConsultations, week));
-    setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
-    setIsLoading(false);
-  }, [week]);
-
-  useEffect(() => {
-    if (timetableData) {
-      // Kui filtrid on tühjad, näita kõiki konsultatsioone
-      if (!selectedTeacher && !selectedDate && !selectedTime) {
-        setFilteredData(timetableData);
-      } else {
-        // Muidu käivita otsing
-        handleSearch();
-      }
+  // Genereeri kuupäevavahemikud JSON failis olevatest kuupäevadest
+  const getDateRanges = () => {
+    let dates: string[] = [];
+    
+    if (selectedTeacher) {
+      // Kui õpetaja on valitud, võtame ainult tema konsultatsioonide kuupäevad
+      dates = [...new Set(sampleConsultations.konsultatsioonid
+        .filter(k => k.opetaja === selectedTeacher)
+        .flatMap(k => k.kuupaevad))].sort();
+    } else {
+      // Kui õpetajat pole valitud, võtame kõik kuupäevad
+      dates = [...new Set(sampleConsultations.konsultatsioonid
+        .flatMap(k => k.kuupaevad))].sort();
     }
-  }, [timetableData, selectedTeacher, selectedDate, selectedTime]);
-
-  const handleSearch = () => {
-    if (!timetableData) return;
-
-    // Kui ükski filter pole valitud, näita kõiki konsultatsioone
-    if (!selectedTeacher && !selectedDate && !selectedTime) {
-      setFilteredData(timetableData);
-      return;
-    }
-
-    let filtered = { ...timetableData };
-    filtered.tunnid = { ...timetableData.tunnid };
-
-    // Filtreeri iga päeva konsultatsioonid
-    Object.keys(filtered.tunnid).forEach(date => {
-      filtered.tunnid[date] = timetableData.tunnid[date].filter(item => {
-        let matchesTeacher = true;
-        let matchesTime = true;
-        let matchesDate = true;
-
-        // Õpetaja filter
-        if (selectedTeacher) {
-          matchesTeacher = item.opetaja.toLowerCase().includes(selectedTeacher.toLowerCase());
+    
+    const ranges: string[] = [];
+    
+    if (dates.length > 0) {
+      let currentStart = new Date(dates[0]);
+      let currentEnd = new Date(dates[0]);
+      
+      dates.forEach((date, index) => {
+        const currentDate = new Date(date);
+        if (index > 0) {
+          const prevDate = new Date(dates[index - 1]);
+          const dayDiff = Math.floor((currentDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24));
+          
+          if (dayDiff > 7) {
+            // Lisa eelmine vahemik
+            ranges.push(`${currentStart.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}-${currentEnd.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}`);
+            currentStart = currentDate;
+          }
+          currentEnd = currentDate;
         }
-
-        // Kellaaja filter
-        if (selectedTime) {
-          matchesTime = item.algus === selectedTime;
-        }
-
-        // Kuupäeva filter
-        if (selectedDate) {
-          const [startStr, endStr] = selectedDate.split('-');
-          const start = new Date(startStr.split('.').reverse().join('-'));
-          const end = new Date(endStr.split('.').reverse().join('-'));
-          const current = new Date(date);
-          matchesDate = current >= start && current <= end;
-        }
-
-        return matchesTeacher && matchesTime && matchesDate;
       });
-    });
-
-    setFilteredData(filtered);
+      
+      // Lisa viimane vahemik
+      ranges.push(`${currentStart.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}-${currentEnd.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}`);
+    }
+    
+    return ranges;
   };
 
-  // Genereeri kuupäevavahemikud järgmise 4 nädala jaoks
-  const getDateRanges = () => {
-    const ranges = [];
-    const startDate = new Date();
-    for (let i = 0; i < 4; i++) {
-      const weekStart = new Date(startDate);
-      weekStart.setDate(startDate.getDate() + (i * 7));
-      const weekEnd = new Date(weekStart);
-      weekEnd.setDate(weekStart.getDate() + 6);
-      
-      const formattedStart = weekStart.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      const formattedEnd = weekEnd.toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' });
-      ranges.push(`${formattedStart}-${formattedEnd}`);
+  // Funktsioon saadaval olevate kellaaegade leidmiseks
+  const getAvailableTimes = () => {
+    if (!selectedTeacher) {
+      return [];
     }
-    return ranges;
+
+    let konsultatsioonid = sampleConsultations.konsultatsioonid
+      .filter(k => k.opetaja === selectedTeacher);
+
+    if (selectedDate) {
+      const [startStr, endStr] = selectedDate.split('-');
+      const start = new Date(startStr.split('.').reverse().join('-'));
+      const end = new Date(endStr.split('.').reverse().join('-'));
+
+      konsultatsioonid = konsultatsioonid.filter(k => 
+        k.kuupaevad.some(date => {
+          const current = new Date(date);
+          return current >= start && current <= end;
+        })
+      );
+    }
+
+    // Võtame unikaalsed kellaajad
+    const times = [...new Set(konsultatsioonid.map(k => k.aeg.split('-')[0]))].sort();
+    return times;
+  };
+
+  // Tühjendame kuupäeva valiku kui õpetaja muutub
+  useEffect(() => {
+    setSelectedDate("");
+  }, [selectedTeacher]);
+
+  // Tühjendame kellaaja valiku kui õpetaja või kuupäev muutub
+  useEffect(() => {
+    setSelectedTime("");
+  }, [selectedTeacher, selectedDate]);
+
+  // Uuendame tabelit, kui nädal muutub
+  useEffect(() => {
+    setIsLoading(true);
+    const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
+    setTimetableData(newData);
+    setIsLoading(false);
+  }, [week, activeFilters]);
+
+  // Laeme õpetajate nimekirja
+  useEffect(() => {
+    setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
+  }, []);
+
+  // Otsingu funktsioon
+  const handleSearch = () => {
+    console.log("Searching with filters:", { selectedTeacher, selectedDate, selectedTime });
+    
+    // Kui kuupäev on valitud, uuendame nädalat vastavalt valitud kuupäevale
+    if (selectedDate) {
+      const [startStr] = selectedDate.split('-');
+      const startDate = new Date(startStr.split('.').reverse().join('-'));
+      
+      // Leiame nädala alguse (esmaspäev)
+      const dayOfWeek = startDate.getDay() || 7; // 0 on pühapäev, 7 on esmaspäev
+      const mondayDate = new Date(startDate);
+      mondayDate.setDate(startDate.getDate() - dayOfWeek + 1);
+      
+      const formattedMonday = mondayDate.toISOString().split('T')[0];
+      console.log("Setting week to:", formattedMonday);
+      setWeek(formattedMonday);
+    }
+    
+    setActiveFilters({
+      teacher: selectedTeacher,
+      date: selectedDate,
+      time: selectedTime
+    });
   };
 
   if (isLoading) {
@@ -308,7 +377,7 @@ export const Konsultatsioonid = () => {
               className="border bg-white border-gray-300 p-2 rounded min-w-[120px]"
             >
               <option value="">Vali aeg</option>
-              {timeOptions.map((time) => (
+              {getAvailableTimes().map((time) => (
                 <option key={time} value={time}>{time}</option>
               ))}
             </select>
@@ -319,22 +388,56 @@ export const Konsultatsioonid = () => {
             >
               Otsi
             </button>
-            
-       
           </div>
 
+          {/* Aktiivsed filtrid */}
+          {(activeFilters.teacher || activeFilters.date || activeFilters.time) && (
+            <div className="mb-4 text-center">
+              <p className="text-gray-600">
+                Aktiivsed filtrid: 
+                {activeFilters.teacher && <span className="ml-2 bg-gray-200 px-2 py-1 rounded mr-2">Õpetaja: {activeFilters.teacher}</span>}
+                {activeFilters.date && <span className="bg-gray-200 px-2 py-1 rounded mr-2">Kuupäev: {activeFilters.date}</span>}
+                {activeFilters.time && <span className="bg-gray-200 px-2 py-1 rounded">Aeg: {activeFilters.time}</span>}
+                <button 
+                  onClick={() => {
+                    // Lähtestame filtrid
+                    setActiveFilters({ teacher: "", date: "", time: "" });
+                    setSelectedTeacher("");
+                    setSelectedDate("");
+                    setSelectedTime("");
+                    
+                    // Lähtestame nädala praegusele nädalale
+                    const today = new Date();
+                    const dayOfWeek = today.getDay() || 7; // 0 on pühapäev, 7 on esmaspäev
+                    const mondayDate = new Date(today);
+                    mondayDate.setDate(today.getDate() - dayOfWeek + 1);
+                    const formattedMonday = mondayDate.toISOString().split('T')[0];
+                    console.log("Resetting week to current week:", formattedMonday);
+                    setWeek(formattedMonday);
+                  }}
+                  className="ml-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-colors duration-200 flex items-center inline-flex"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  Tühista filtrid
+                </button>
+              </p>
+            </div>
+          )}
+
           {/* Teade, kui tulemusi pole */}
-          {filteredData && Object.values(filteredData.tunnid).every(arr => arr.length === 0) && (
+          {timetableData && Object.values(timetableData.tunnid).every(arr => arr.length === 0) && (
             <div className="text-center text-gray-600 my-4">
               Valitud filtritega konsultatsioone ei leitud.
             </div>
           )}
 
           {/* Table Component */}
-          {filteredData && (
+          {timetableData && (
             <Table 
               type="consultations"
-              data={[filteredData]}
+              data={[timetableData]}
               title="Konsultatsioonid"
               week={week}
               setWeek={setWeek}
@@ -344,4 +447,4 @@ export const Konsultatsioonid = () => {
       </div>
     </div>
   )
-}
+};
