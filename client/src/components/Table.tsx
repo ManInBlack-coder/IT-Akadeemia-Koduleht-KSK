@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import arrow_down from "../assets/icons/arrow-down.svg";
 import { TimetableItem } from "./TimetableItem";
 import { ConsultationItem } from "./ConsultationItem";
@@ -57,24 +57,26 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
 
   return (
     <div className="overflow-x-auto mt-4">
-      <div className="flex justify-center items-center gap-4 bg-white border p-4 relative">
-        <h1 className="absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
-        <button className="p-1" onClick={() => {
-          const newWeek = new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-          setWeek(newWeek)
-        }}>
-          <img src={angle_right} alt="arrow_left" className="rotate-180" />
-        </button>
-        <span className="text-lg">{new Date(week).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })} - {new Date(new Date(week).getTime() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
-        <button className="p-1" onClick={() => {
-          const newWeek = new Date(new Date(week).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-          setWeek(newWeek)
-        }}>
-          <img src={angle_right} alt="arrow_right" />
-        </button>
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 bg-white border p-4 relative">
+        <h1 className="hidden md:block absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
+        <div className="flex flex-row items-center justify-center gap-4">
+          <button className="p-1" onClick={() => {
+            const newWeek = new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+            setWeek(newWeek)
+          }}>
+            <img src={angle_right} alt="arrow_left" className="rotate-180" />
+          </button>
+          <span className="text-lg">{new Date(week).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })} - {new Date(new Date(week).getTime() + 4 * 24 * 60 * 60 * 1000).toLocaleDateString('et-EE', { day: '2-digit', month: '2-digit', year: 'numeric' })}</span>
+          <button className="p-1" onClick={() => {
+            const newWeek = new Date(new Date(week).getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+            setWeek(newWeek)
+          }}>
+            <img src={angle_right} alt="arrow_right" />
+          </button>
+        </div>
       </div>
-
-      <table className="w-full border-collapse border border-gray-300 bg-white table-fixed">
+      {/* Desktop table */}
+      <table className="hidden md:table w-full border-collapse border border-gray-300 bg-white table-fixed">
         <thead>
           <tr className="bg-white">
             <th className="border w-1/12"></th>
@@ -123,6 +125,47 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
               );
             })
           )}
+        </tbody>
+      </table>
+      {/* Mobile table */}
+      <table className="md:hidden w-full border-collapse border border-gray-300 bg-white table-fixed">
+        <tbody>
+          {Object.keys(data[0]?.tunnid).length === 0 ? (
+            <tr>
+              <td colSpan={6} className="border p-4 text-center text-base-regular">
+                Selle nädala tunniplaan pole veel saadaval.
+              </td>
+            </tr>
+          ) : days.map((day, index) => (
+            <React.Fragment key={index}>
+              <tr>
+                <td className="border text-small-bold p-4 bg-white text-center">
+                  {dayNames[index]}
+                </td>
+              </tr>
+              {Object.keys(times).map((time: string) => {
+                const item = data[0]?.tunnid?.[day]?.find((item) => item.tund === time);
+                if (!item || (type === 'timetable' && !item.aine)) return null;
+
+                return (
+                  <tr key={`${day}-${time}`}>
+                    <td className="border text-left text-base-regular w-full p-4" style={{ backgroundColor: generateColor(item.aine || "") }}>
+                      {type === 'timetable' ? (
+                        <TimetableItem
+                          teacher={item.opetaja || ""}
+                          title={item.aine || ""}
+                          room={item.ruum || ""}
+                          time={times[time]}
+                        />
+                      ) : (
+                        <ConsultationItem />
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </React.Fragment>
+          ))}
         </tbody>
       </table>
     </div>
