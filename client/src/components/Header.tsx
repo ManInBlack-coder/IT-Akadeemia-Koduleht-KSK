@@ -1,5 +1,5 @@
 import headerLogo from '../assets/logo.svg'
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import menuIcon from '../assets/icons/menuIcon.svg';
 import { useState } from 'react';
 
@@ -7,6 +7,7 @@ import { useState } from 'react';
 export const Header = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const currentPath = useLocation().pathname;
 
   return (
     <div className="w-full bg-black p-4 flex flex-col justify-start items-center z-20 relative">
@@ -14,21 +15,21 @@ export const Header = () => {
             <Link to="/">
                 <img src={headerLogo}/>
             </Link>
-            <div className="hidden md:flex text-white gap-12 h-full items-center">
+            <div className="hidden md:flex gap-12 h-full items-center">
                 <Link to="/erialad">
-                    <p>Erialad</p>
+                    <p className={`${currentPath === '/erialad' ? 'text-gray-300' : 'text-white'} hover:underline`}>Erialad</p>
                 </Link>
                 <Link to="/praktika">
-                    <p>Praktika</p>
+                    <p className={`${currentPath === '/praktika' ? 'text-gray-300' : 'text-white'} hover:underline`}>Praktika</p>
                 </Link>
                 <Link to="/tunniplaan">
-                    <p>Tunniplaan</p>
+                    <p className={`${currentPath === '/tunniplaan' ? 'text-gray-300' : 'text-white'} hover:underline`}>Tunniplaan</p>
                 </Link>
                 <Link to="/konsultatsioonid">
-                    <p>Konsultatsioonid</p>
+                    <p className={`${currentPath === '/konsultatsioonid' ? 'text-gray-300' : 'text-white'} hover:underline`}>Konsultatsioonid</p>
                 </Link>
                 <Link to="/voistlused">
-                    <p>Võistlused</p>
+                    <p className={`${currentPath === '/voistlused' ? 'text-gray-300' : 'text-white'} hover:underline`}>Võistlused</p>
                 </Link>
             </div>
             <div className="flex md:hidden text-white gap-4 h-full items-center">
