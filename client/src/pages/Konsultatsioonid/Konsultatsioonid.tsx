@@ -449,8 +449,8 @@ export const Konsultatsioonid = () => {
     return (
       <div className="flex flex-col w-full min-h-screen justify-start items-center">
         <div className="w-full">
-          <div className="max-w-5xl mx-auto px-4 py-12">
-            <h1 className="text-heading2-bold mb-8">Õpetajate konsultatsioonid</h1>
+          <div className="flex flex-col items-center justify-center w-full h-[160px]">
+          <h1 className="text-heading1-bold text-center mb-12">ÕPETAJATE KONSULTATSIOONID</h1>
             <div className="text-center">Laadin andmeid...</div>
           </div>
         </div>
@@ -460,21 +460,20 @@ export const Konsultatsioonid = () => {
 
   return (
     <div className="tunniplaan-bg-one flex flex-col w-full items-center justify-start min-h-screen bg-vocogray">
-      <img src={vocoMuster} alt="voco muster" className='absolute top-0 right-0 w-full h-1/3 md:w-2/3 md:h-full'/>
+      <img src={vocoMuster} alt="voco muster" className='absolute top-0 left-0 w-full h-1/3 md:w-2/3 md:h-full'/>
       <div className='flex flex-col items-center justify-center w-full h-full z-10 p-4'>
         <div className='flex flex-col items-center justify-center w-full h-[160px]'>
-          <h1 className='text-heading1-bold text-black text-center'>ÕPETAJATE KONSULTATSIOONID</h1>
+        <h1 className="text-heading1-bold text-center mb-12">ÕPETAJATE KONSULTATSIOONID</h1>
         </div>
         
-        <div className='flex flex-col items-center justify-center w-full md:w-5/6 h-full my-4'>
+        <div className='flex flex-col items-center justify-center w-full md:w-5/6 h-full'>
           {/* Filtrid */}
           <div className="flex flex-col md:flex-row items-center justify-center w-full gap-4 mb-8">
-            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
-              <label className="text-small-medium text-black">Vali õpetaja</label>
+            <div className='w-full md:w-auto'>
               <select 
                 value={selectedTeacher}
                 onChange={(e) => setSelectedTeacher(e.target.value)}
-                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+                className="border bg-white border-gray-300 p-3 rounded w-full"
               >
                 <option value="">Kõik õpetajad</option>
                 {teachers.map((teacher) => (
@@ -483,12 +482,12 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
-              <label className="text-small-medium text-black">Vali kuupäev</label>
+
+            <div className='w-full md:w-auto mt-4 md:mt-0'>
               <select 
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+                className="border bg-white border-gray-300 p-3 rounded w-full"
               >
                 <option value="">Kõik kuupäevad</option>
                 {getDateRanges().map((range) => (
@@ -497,12 +496,11 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto'>
-              <label className="text-small-medium text-black">Vali aeg</label>
+            <div className='w-full md:w-auto mt-4 md:mt-0'>
               <select 
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
-                className="border bg-white border-gray-300 p-2 rounded w-full mt-2"
+                className="border bg-white border-gray-300 p-3 rounded w-full"
               >
                 <option value="">Kõik ajad</option>
                 {getAvailableTimes().map((time) => (
@@ -511,10 +509,12 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-            <div className='flex flex-col items-start justify-center h-full w-full md:w-auto mt-4 md:mt-0 md:self-end'>
+           
+
+            <div className='w-full md:w-auto mt-4 md:mt-0'>
               <button 
                 onClick={handleSearch}
-                className="bg-black text-white px-8 py-2 rounded hover:bg-blue-700 w-full md:w-auto"
+                className="bg-black text-white p-3 rounded w-full text-center"
               >
                 Otsi
               </button>
