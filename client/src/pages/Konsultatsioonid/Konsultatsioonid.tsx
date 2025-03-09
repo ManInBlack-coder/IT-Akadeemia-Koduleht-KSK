@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { Table } from "../../components/Table"
 import sampleConsultations from './sampleConsultations.json'
+import axios from 'axios'
+import { getApiUrl } from '../../utils/functions'
 
 //https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=KPL&aasta=2024&periood=1&nadal=2024-03-18
 
@@ -203,12 +205,20 @@ export const Konsultatsioonid = () => {
     
     if (selectedTeacher) {
       // Kui õpetaja on valitud, võtame ainult tema konsultatsioonide kuupäevad
-      dates = [...new Set(sampleConsultations.konsultatsioonid
+      dates = [...new Set((timetableData ? 
+        // Kui meil on API-st saadud andmed, kasutame neid
+        convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
+        // Vastasel juhul kasutame näidisandmeid
+        sampleConsultations.konsultatsioonid)
         .filter(k => k.opetaja === selectedTeacher)
         .flatMap(k => k.kuupaevad))].sort();
     } else {
       // Kui õpetajat pole valitud, võtame kõik kuupäevad
-      dates = [...new Set(sampleConsultations.konsultatsioonid
+      dates = [...new Set((timetableData ? 
+        // Kui meil on API-st saadud andmed, kasutame neid
+        convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
+        // Vastasel juhul kasutame näidisandmeid
+        sampleConsultations.konsultatsioonid)
         .flatMap(k => k.kuupaevad))].sort();
     }
     
@@ -246,7 +256,11 @@ export const Konsultatsioonid = () => {
       return [];
     }
 
-    let konsultatsioonid = sampleConsultations.konsultatsioonid
+    let konsultatsioonid = (timetableData ? 
+      // Kui meil on API-st saadud andmed, kasutame neid
+      convertFromScheduleToKonsultatsioonid(timetableData).konsultatsioonid : 
+      // Vastasel juhul kasutame näidisandmeid
+      sampleConsultations.konsultatsioonid)
       .filter(k => k.opetaja === selectedTeacher);
 
     if (selectedDate) {
@@ -280,15 +294,51 @@ export const Konsultatsioonid = () => {
   // Uuendame tabelit, kui nädal muutub
   useEffect(() => {
     setIsLoading(true);
-    const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
-    setTimetableData(newData);
-    setIsLoading(false);
-  }, [week, activeFilters]);
+    
+    // API päring konsultatsioonide andmete saamiseks
+    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=${hoone}&aasta=${new Date().getFullYear()}&periood=1&nadal=${week}`)
+      .then(response => {
+        const data = response.data as KonsultatsioonidData;
+        if (!data || !data.konsultatsioonid || data.konsultatsioonid.length === 0) {
+          // Kui andmeid ei leitud, kasutame näidisandmeid
+          const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
+          setTimetableData(newData);
+        } else {
+          // Kui andmed leiti, kasutame neid
+          const newData = convertToScheduleType(data, week, activeFilters);
+          setTimetableData(newData);
+        }
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching consultation data:", error);
+        // Vea korral kasutame näidisandmeid
+        const newData = convertToScheduleType(sampleConsultations, week, activeFilters);
+        setTimetableData(newData);
+        setIsLoading(false);
+      });
+  }, [week, activeFilters, hoone]);
 
   // Laeme õpetajate nimekirja
   useEffect(() => {
-    setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
-  }, []);
+    // API päring õpetajate nimekirja saamiseks
+    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=${hoone}&aasta=${new Date().getFullYear()}&periood=1`)
+      .then(response => {
+        const data = response.data as KonsultatsioonidData;
+        if (!data || !data.konsultatsioonid || data.konsultatsioonid.length === 0) {
+          // Kui andmeid ei leitud, kasutame näidisandmeid
+          setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
+        } else {
+          // Kui andmed leiti, kasutame neid
+          setTeachers([...new Set(data.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
+        }
+      })
+      .catch(error => {
+        console.error("Error fetching teachers data:", error);
+        // Vea korral kasutame näidisandmeid
+        setTeachers([...new Set(sampleConsultations.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
+      });
+  }, [hoone]);
 
   // Otsingu funktsioon
   const handleSearch = () => {
@@ -314,6 +364,55 @@ export const Konsultatsioonid = () => {
       date: selectedDate,
       time: selectedTime
     });
+  };
+
+  // Abifunktsioon ScheduleType andmete teisendamiseks KonsultatsioonidData formaati
+  const convertFromScheduleToKonsultatsioonid = (schedule: ScheduleType): KonsultatsioonidData => {
+    // Kui meil pole timetableData, tagastame tühja objekti
+    if (!schedule || !schedule.tunnid) {
+      return sampleConsultations;
+    }
+
+    // Loome uue KonsultatsioonidData objekti
+    const result: KonsultatsioonidData = {
+      aasta: new Date().getFullYear(),
+      periood: "1",
+      konsultatsioonid: []
+    };
+
+    // Käime läbi kõik tunnid ja teisendame need konsultatsioonideks
+    Object.entries(schedule.tunnid).forEach(([date, items]) => {
+      items.forEach(item => {
+        // Leiame, kas selline konsultatsioon on juba olemas
+        const existingIndex = result.konsultatsioonid.findIndex(k => 
+          k.opetaja === item.opetaja && 
+          k.oppeaine === item.aine && 
+          k.aeg === `${item.algus}-${item.lopp}` &&
+          k.ruum === item.ruum
+        );
+
+        if (existingIndex >= 0) {
+          // Kui on olemas, lisame kuupäeva
+          if (!result.konsultatsioonid[existingIndex].kuupaevad.includes(date)) {
+            result.konsultatsioonid[existingIndex].kuupaevad.push(date);
+          }
+        } else {
+          // Kui pole, loome uue
+          result.konsultatsioonid.push({
+            opetaja: item.opetaja,
+            oppeaine: item.aine,
+            paev: new Date(date).toLocaleDateString('et-EE', { weekday: 'short' }).charAt(0).toUpperCase(),
+            aeg: `${item.algus}-${item.lopp}`,
+            kuupaevad: [date],
+            ruum: item.ruum,
+            lisainfo: null,
+            tegevus: "Konsultatsioon"
+          });
+        }
+      });
+    });
+
+    return result;
   };
 
   if (isLoading) {
