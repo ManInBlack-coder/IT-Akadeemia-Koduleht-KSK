@@ -34,16 +34,12 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
   const days: string[] = createWeekDaysArray(week);
   const dayNames: string[] = ["Esmaspäev", "Teisipäev", "Kolmapäev", "Neljapäev", "Reede"];
   const times: {[key: string]: string} = {
-    "1": "07:00-08:29",
-    "2": "08:30-10:00",
-    "3": "10:15-11:45",
+    "1": "07:00-08:30",
+    "2": "08:30-10:15",
+    "3": "10:15-11:55",
     "4": "11:55-14:00",
-    "5": "14:10-15:40",
-    "6": "15:45-17:15",
-    "7": "17:20-18:50",
-    "8": "18:55-20:25",
-    "9": "20:35-22:05",
-    "soomine": "12:00-12:30"
+    "5": "14:00-15:45",
+    "6": "15:45-17:20"
   };
 
   const generateColor = (title: string): string => {
@@ -101,7 +97,8 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
                 return !item || (type === 'timetable' && !item.aine);
               });
 
-              if (isRowEmpty) return null;
+              // Konsultatsioonide puhul kuvame kõik read, isegi kui need on tühjad
+              if (isRowEmpty && type === 'timetable') return null;
 
               return (
                 <tr key={time}>
@@ -117,7 +114,19 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
                           room={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.ruum || ""}
                         />
                       ) : (
-                        <ConsultationItem />
+                        data[0]?.tunnid?.[day]?.find((item) => item.tund === time) ? (
+                          <ConsultationItem 
+                            teacher={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.opetaja || ""}
+                            subject={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.aine || ""}
+                            room={data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.ruum || ""}
+                            additionalInfo={null}
+                            time={`${data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.algus || ""}-${data[0]?.tunnid?.[day]?.find((item) => item.tund === time)?.lopp || ""}`}
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center md:items-start justify-center w-full gap-1 text-center md:text-left">
+                            <span className="text-sm text-gray-400"></span>
+                          </div>
+                        )
                       )}
                     </td>
                   ))}
@@ -145,20 +154,31 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
               </tr>
               {Object.keys(times).map((time: string) => {
                 const item = data[0]?.tunnid?.[day]?.find((item) => item.tund === time);
-                if (!item || (type === 'timetable' && !item.aine)) return null;
+                
+                // Konsultatsioonide puhul ei kuva tühje ridu
+                if (!item) return null;
+                
+                // Tunniplaani puhul ei kuva tühje ridu
+                if (type === 'timetable' && !item.aine) return null;
 
                 return (
                   <tr key={`${day}-${time}`}>
-                    <td className="border text-left text-base-regular w-full p-4" style={{ backgroundColor: generateColor(item.aine || "") }}>
+                    <td className="border text-left text-base-regular w-full p-4" style={{ backgroundColor: generateColor(item?.aine || "") }}>
                       {type === 'timetable' ? (
                         <TimetableItem
-                          teacher={item.opetaja || ""}
-                          title={item.aine || ""}
-                          room={item.ruum || ""}
+                          teacher={item?.opetaja || ""}
+                          title={item?.aine || ""}
+                          room={item?.ruum || ""}
                           time={times[time]}
                         />
                       ) : (
-                        <ConsultationItem />
+                        <ConsultationItem 
+                          teacher={item.opetaja || ""}
+                          subject={item.aine || ""}
+                          room={item.ruum || ""}
+                          additionalInfo={null}
+                          time={`${item.algus || ""}-${item.lopp || ""}`}
+                        />
                       )}
                     </td>
                   </tr>
