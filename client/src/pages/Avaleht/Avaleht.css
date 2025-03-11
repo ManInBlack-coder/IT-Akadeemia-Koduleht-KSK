@@ -4,3 +4,10 @@
     background-size: cover;
     background-position: center;
 }
+
+.example{
+    background-image: url('/src/assets/avaleht/example1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
