@@ -2,6 +2,7 @@ import './Avaleht.css'
 import { Link } from 'react-router-dom'
 import technologist from '../../assets/avaleht/technologist.png'
 import example2 from '../../assets/avaleht/example2.png'
+import { Button } from '../../components/Button'
 
 // Event type definition
 interface Event {
@@ -75,9 +76,7 @@ const Avaleht = () => {
         <div className="z-1 flex text-white font-semibold justify-center items-center flex-col text-center gap-8 md:gap-12 py-8">
             <h1 className="text-heading3-bold md:text-heading1-bold text-2xl md:text-[40px]">IT AKADEEMIA – KUJUNDA OMA TULEVIK!</h1>
             <Link to="/erialad">
-              <button className='border border-itkool bg-itkool px-[44px] py-[14px]'>
-                <h2 className="text-base-medium">Leia Eriala</h2>
-              </button>
+              <Button buttonText="Leia Eriala" color="blue"/>
             </Link>
           </div>
       </div>
@@ -104,9 +103,7 @@ const Avaleht = () => {
             <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Võimalusterohke õppimine IT ja ärivaldkonnas</div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
-                <button className='border bg-black px-[44px] py-[14px]'>
-                  <h2 className="text-base-medium text-white">Leia Eriala</h2>
-                </button>
+                <Button buttonText="Leia Eriala" color="black"/>
               </Link>
             </div>
           </div>
@@ -121,12 +118,10 @@ const Avaleht = () => {
           </div>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
             <div className='lg:hidden flex w-full min-h-80 example'></div>
-            <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Võimalusterohke õppimine IT ja ärivaldkonnas</div>
+            <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Kaasaegsed õpperuumid ja laborid</div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
-                <button className='border bg-black px-[44px] py-[14px]'>
-                  <h2 className="text-base-medium text-white">Leia Eriala</h2>
-                </button>
+                <Button buttonText="Leia Eriala" color="black"/>
               </Link>
             </div>
           </div>
@@ -135,12 +130,10 @@ const Avaleht = () => {
         <div className='bg-vocogray flex w-5/6 lg:w-4/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px]'>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
             <div className='lg:hidden flex w-full min-h-80 example'></div>
-            <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Võimalusterohke õppimine IT ja ärivaldkonnas</div>
+            <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Tihe koostöö juhtivate ettevõtetega</div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
-                <button className='border bg-black px-[44px] py-[14px]'>
-                  <h2 className="text-base-medium text-white">Leia Eriala</h2>
-                </button>
+                <Button buttonText="Leia Eriala" color="black"/>
               </Link>
             </div>
           </div>

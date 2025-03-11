@@ -3,7 +3,7 @@ import axios from "axios"
 import { getApiUrl } from "../../utils/functions"
 import { useState, useEffect } from "react"
 import erialad3 from '../../assets/erialad/example3.png'
-
+import { Button } from '../../components/Button'
 interface StudyProgram {
   oppekava_nimetus: string;
   oppe_baastase?: string;
@@ -195,12 +195,7 @@ const Erialad = () => {
           
           {/* Search button */}
           <div className="flex lg:min-w-[250px] justify-center pt-[24px] lg:pt-0">
-            <button 
-              onClick={applyFilters}
-              className="bg-black text-white py-4 px-8 font-medium text-center w-full"
-            >
-              Otsi Eriala
-            </button>
+            <Button buttonText="Otsi Eriala" color="black" onClick={() => applyFilters()}/>
           </div>
         </div>
       </div>
