@@ -4,3 +4,8 @@
     background-size: cover;
     background-position: center;
 }
+@media (min-width: 1024px) {
+    .erialad-bg {
+        background-image: url('/src/assets/erialad/erialadBackground.png');
+    }
+}

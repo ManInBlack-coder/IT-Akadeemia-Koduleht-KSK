@@ -121,119 +121,125 @@ const Erialad = () => {
 
   return (
     <div className='flex w-full flex-col min-h-screen justify-start items-center'>
-      <div className={`erialad-bg flex w-full justify-center min-h-80 px-4`}>
-        <div className="z-1 flex text-white font-semibold justify-end items-center flex-col text-center gap-4 md:gap-12 pb-16">
-          <h1 className="text-heading3-bold md:text-heading1-bold text-2xl text-black md:text-[40px]">ÕPI, MIS SIND HUVITAB</h1>
-          <p className='text-base-medium text-black'>Lorem ipsum dolor sit amet consectetur. Morbi lectus cursus morbi massa felis nunc. Integer eu dolor sapien sapien. </p>
+      <div className={`erialad-bg flex w-full justify-center min-h-80 lg:min-h-[550px] px-4`}>
+        <div className="z-1 flex text-white font-semibold justify-end items-center flex-col text-center gap-4 md:gap-12 pb-16 lg:pb-48">
+          <h1 className="text-heading3-bold md:text-heading1-bold text-2xl text-black lg:text-[40px]">ÕPI, MIS SIND HUVITAB</h1>
+          <div className="h-1 w-24 bg-itkool mb-4 mx-auto lg:mx-0"></div>
+          <p className='w-3/4 text-base-medium text-black lg:text-heading3-bold'> Talvine vastuvõtt on avatud 2.-16 jaanuarini. Õpe on kõigile tasuta</p>
         </div>
       </div>
       
       {/* Filter section */}
-      <div className="w-full mt-8 px-4 space-y-[24px]">
+      <div className="w-full mt-8 px-4 space-y-[24px] lg:pb-[88px]">
         {/* Filter dropdowns */}
-        <div className="flex flex-col gap-y-[12px]">
-          {/* Education requirement filter */}
-          <div className="relative border-2 border-black">
-            <select 
-              className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
-              value={educationRequirement}
-              onChange={(e) => setEducationRequirement(e.target.value)}
-            >
-              <option value="">Haridusnõudeta</option>
-              <option value="Puudub">Puudub</option>
-              {uniqueEducationRequirements.map(req => (
-                <option key={req} value={req}>{req}</option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
+      <div className='flex flex-col lg:flex-row lg:gap-x-[32px] lg:ml-[150px]'>
+          <div className="flex flex-col lg:flex-row lg:gap-x-[32px] gap-y-[12px]">
+            {/* Education requirement filter */}
+            <div className="relative border-2 border-black">
+              <select 
+                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                value={educationRequirement}
+                onChange={(e) => setEducationRequirement(e.target.value)}
+              >
+                <option value="">Haridusnõudeta</option>
+                <option value="Puudub">Puudub</option>
+                {uniqueEducationRequirements.map(req => (
+                  <option key={req} value={req}>{req}</option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+            </div>
+            
+            {/* Achievable level filter */}
+            <div className="relative border-2 border-black">
+              <select 
+                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                value={achievableLevel}
+                onChange={(e) => setAchievableLevel(e.target.value)}
+              >
+                <option value="">Saavutatav tase</option>
+                {uniqueAchievableLevels.map(level => (
+                  <option key={level} value={level}>{level}</option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+            </div>
+            
+            {/* Study form filter */}
+            <div className="relative border-2 border-black">
+              <select 
+                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                value={studyForm}
+                onChange={(e) => setStudyForm(e.target.value)}
+              >
+                <option value="">Õppekorraldus</option>
+                {uniqueStudyForms.map(form => (
+                  <option className='' key={form} value={form}>{form}</option>
+                ))}
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
             </div>
           </div>
           
-          {/* Achievable level filter */}
-          <div className="relative border-2 border-black">
-            <select 
-              className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
-              value={achievableLevel}
-              onChange={(e) => setAchievableLevel(e.target.value)}
+          {/* Search button */}
+          <div className="flex lg:min-w-[250px] justify-center pt-[24px] lg:pt-0">
+            <button 
+              onClick={applyFilters}
+              className="bg-black text-white py-4 px-8 font-medium text-center w-full"
             >
-              <option value="">Saavutatav tase</option>
-              {uniqueAchievableLevels.map(level => (
-                <option key={level} value={level}>{level}</option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </div>
+              Otsi Eriala
+            </button>
           </div>
-          
-          {/* Study form filter */}
-          <div className="relative border-2 border-black">
-            <select 
-              className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
-              value={studyForm}
-              onChange={(e) => setStudyForm(e.target.value)}
-            >
-              <option value="">Õppekorraldus</option>
-              {uniqueStudyForms.map(form => (
-                <option className='' key={form} value={form}>{form}</option>
-              ))}
-            </select>
-            <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </div>
-          </div>
-        </div>
-        
-        {/* Search button */}
-        <div className="flex justify-center">
-          <button 
-            onClick={applyFilters}
-            className="bg-black text-white py-4 px-8 font-medium text-center w-full"
-          >
-            Otsi Eriala
-          </button>
         </div>
       </div>
 
       {/* Results section */}
-      <div className="w-full max-w-4xl mx-auto mt-8 px-4 pb-[148px]">
+      <div className="w-full max-w-4xl lg:max-w-none lg:w-[95vw] mx-auto mt-8 px-4 lg:px-12 pb-[148px]">
         {isLoading ? (
           <div className="text-center py-8">Loading...</div>
         ) : filteredData && Object.keys(filteredData).length > 0 ? (
           Object.entries(filteredData).map(([key, value]) => (
             <div key={key} className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-6 lg:gap-[62px]">
                 {Object.entries(value.erialad).map(([studyProgramKey, studyProgramValue]) => (
-                  <div key={studyProgramKey} className="bg-vocogray overflow-hidden shadow-sm">
-                    <div className="w-full h-64 overflow-hidden">
+                  <div key={studyProgramKey} className="bg-vocogray overflow-hidden shadow-sm flex flex-col lg:flex-row lg:max-h-[300px]">
+                    <div className="w-full lg:w-1/3 h-64 lg:h-auto overflow-hidden">
                       <img 
                         src={erialad3} 
                         alt={studyProgramValue.oppekava_nimetus} 
-                        className="w-full h-full object-cover"
+                        className="w-full lg:w-5/6 h-full object-cover"
                       />
                     </div>
-                    <div className="p-5">
-                      <h3 className="text-heading5-bold mb-3 text-center">{studyProgramValue.oppekava_nimetus}</h3>
-                      <p className="text-base-medium mb-4">
-                        Lorem ipsum dolor sit amet consectetur. Morbi lectus cursus morbi massa felis nunc. Integer eu dolor sapien sapien. Faucibus vel
-                      </p>
-                      <div className="space-y-2 mb-5">
-                        <p className="text-small-regular">
-                          <span className="text-small-bold">Haridusnõue:</span> {studyProgramValue.oppe_baastase || "Puudub"}
+                    <div className="p-5 lg:flex lg:flex-col lg:justify-between">
+                      <div>
+                        <h3 className="text-heading5-bold mb-3 text-center lg:text-left">{studyProgramValue.oppekava_nimetus}</h3>
+                        <div className="h-1 w-24 bg-itkool mb-4 mx-auto lg:mx-0"></div>
+                        <p className="text-large-medium mb-4">
+                          Lorem ipsum dolor sit amet consectetur. Morbi lectus cursus morbi massa felis nunc. Integer eu dolor sapien sapien. Faucibus vel
                         </p>
-                        <p className="text-small-regular">
-                          <span className="text-small-bold">Õppekorraldus:</span> {studyProgramValue.oppevorm_sonadega}
-                        </p>
-                        <p className="text-small-regular">
-                          <span className="text-small-bold">Saavutatav tase:</span> {studyProgramValue.saavutatav_tase}
-                        </p>
+                        <div className="space-y-2 mb-5">
+                          <p className="text-small-regular">
+                            <span className="text-small-bold">Haridusnõue:</span> {studyProgramValue.oppe_baastase || "Puudub"}
+                          </p>
+                          <p className="text-small-regular">
+                            <span className="text-small-bold">Õppekorraldus:</span> {studyProgramValue.oppevorm_sonadega}
+                          </p>
+                          <p className="text-small-regular">
+                            <span className="text-small-bold">Saavutatav tase:</span> {studyProgramValue.saavutatav_tase}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
