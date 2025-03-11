@@ -460,7 +460,7 @@ export const Konsultatsioonid = () => {
 
   return (
     <div className="tunniplaan-bg-one flex flex-col w-full items-center justify-start min-h-screen bg-vocogray">
-      <img src={vocoMuster} alt="voco muster" className='absolute top-0 left-0 w-full h-1/3 md:w-2/3 md:h-full'/>
+      <img src={vocoMuster} alt="voco muster" className='absolute top-0 left-0 w-full h-1/3 md:hidden'/>
       <div className='flex flex-col items-center justify-center w-full h-full z-10 p-4'>
         <div className='flex flex-col items-center justify-center w-full h-[160px]'>
         <h1 className="text-heading1-bold text-center mb-12">ÕPETAJATE KONSULTATSIOONID</h1>
