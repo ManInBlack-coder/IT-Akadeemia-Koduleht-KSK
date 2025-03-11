@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @tailwind base;
@@ -164,5 +163,261 @@ h1 {
 .text-xsmall-bold{
   font-size: 11px;
   font-weight: 700;
+}
+
+/* Media queries for responsive typography */
+@media (min-width: 768px) {
+  /* Heading 1 */
+  .text-heading1-regular,
+  .text-heading1-medium,
+  .text-heading1-bold {
+    font-size: 40px;
+  }
+  
+  /* Heading 2 */
+  .text-heading2-regular,
+  .text-heading2-medium,
+  .text-heading2-bold {
+    font-size: 36px;
+  }
+  
+  /* Heading 3 */
+  .text-heading3-regular,
+  .text-heading3-medium,
+  .text-heading3-bold {
+    font-size: 32px;
+  }
+  
+  /* Heading 4 */
+  .text-heading4-regular,
+  .text-heading4-medium,
+  .text-heading4-bold {
+    font-size: 28px;
+  }
+  
+  /* Heading 5 */
+  .text-heading5-regular,
+  .text-heading5-medium,
+  .text-heading5-bold {
+    font-size: 24px;
+  }
+  
+  /* Heading 6 */
+  .text-heading6-regular,
+  .text-heading6-medium,
+  .text-heading6-bold {
+    font-size: 22px;
+  }
+  
+  /* Large text */
+  .text-large-regular,
+  .text-large-medium,
+  .text-large-bold {
+    font-size: 18px;
+  }
+  
+  /* Base text */
+  .text-base-regular,
+  .text-base-medium,
+  .text-base-bold {
+    font-size: 16px;
+  }
+  
+  /* Small text */
+  .text-small-regular,
+  .text-small-medium,
+  .text-small-bold {
+    font-size: 14px;
+  }
+  
+  /* Extra small text */
+  .text-xsmall-regular,
+  .text-xsmall-medium,
+  .text-xsmall-bold {
+    font-size: 12px;
+  }
+}
+
+/* Larger desktop screens */
+@media (min-width: 1024px) {
+  /* Heading 1 */
+  .text-heading1-regular,
+  .text-heading1-medium,
+  .text-heading1-bold {
+    font-size: 48px;
+  }
+  
+  /* Heading 2 */
+  .text-heading2-regular,
+  .text-heading2-medium,
+  .text-heading2-bold {
+    font-size: 40px;
+  }
+}
+
+/* Tailwind-compatible typography classes */
+@layer utilities {
+  /* Heading 1 */
+  .text-heading1-regular {
+    @apply text-heading1 font-regular;
+  }
+  .text-heading1-medium {
+    @apply text-heading1 font-medium;
+  }
+  .text-heading1-bold {
+    @apply text-heading1 font-bold;
+  }
+
+  /* Heading 2 */
+  .text-heading2-regular {
+    @apply text-heading2 font-regular;
+  }
+  .text-heading2-medium {
+    @apply text-heading2 font-medium;
+  }
+  .text-heading2-bold {
+    @apply text-heading2 font-bold;
+  }
+
+  /* Heading 3 */
+  .text-heading3-regular {
+    @apply text-heading3 font-regular;
+  }
+  .text-heading3-medium {
+    @apply text-heading3 font-medium;
+  }
+  .text-heading3-bold {
+    @apply text-heading3 font-bold;
+  }
+
+  /* Heading 4 */
+  .text-heading4-regular {
+    @apply text-heading4 font-regular;
+  }
+  .text-heading4-medium {
+    @apply text-heading4 font-medium;
+  }
+  .text-heading4-bold {
+    @apply text-heading4 font-bold;
+  }
+
+  /* Heading 5 */
+  .text-heading5-regular {
+    @apply text-heading5 font-regular;
+  }
+  .text-heading5-medium {
+    @apply text-heading5 font-medium;
+  }
+  .text-heading5-bold {
+    @apply text-heading5 font-bold;
+  }
+
+  /* Heading 6 */
+  .text-heading6-regular {
+    @apply text-heading6 font-regular;
+  }
+  .text-heading6-medium {
+    @apply text-heading6 font-medium;
+  }
+  .text-heading6-bold {
+    @apply text-heading6 font-bold;
+  }
+
+  /* Large text */
+  .text-large-regular {
+    @apply text-large font-regular;
+  }
+  .text-large-medium {
+    @apply text-large font-medium;
+  }
+  .text-large-bold {
+    @apply text-large font-bold;
+  }
+
+  /* Base text */
+  .text-base-regular {
+    @apply text-base font-regular;
+  }
+  .text-base-medium {
+    @apply text-base font-medium;
+  }
+  .text-base-bold {
+    @apply text-base font-bold;
+  }
+
+  /* Small text */
+  .text-small-regular {
+    @apply text-small font-regular;
+  }
+  .text-small-medium {
+    @apply text-small font-medium;
+  }
+  .text-small-bold {
+    @apply text-small font-bold;
+  }
+
+  /* Extra small text */
+  .text-xsmall-regular {
+    @apply text-xsmall font-regular;
+  }
+  .text-xsmall-medium {
+    @apply text-xsmall font-medium;
+  }
+  .text-xsmall-bold {
+    @apply text-xsmall font-bold;
+  }
+}
+
+/* Responsive typography overrides */
+@screen md {
+  .text-heading1-regular, .text-heading1-medium, .text-heading1-bold {
+    font-size: 40px;
+  }
+  
+  .text-heading2-regular, .text-heading2-medium, .text-heading2-bold {
+    font-size: 36px;
+  }
+  
+  .text-heading3-regular, .text-heading3-medium, .text-heading3-bold {
+    font-size: 32px;
+  }
+  
+  .text-heading4-regular, .text-heading4-medium, .text-heading4-bold {
+    font-size: 28px;
+  }
+  
+  .text-heading5-regular, .text-heading5-medium, .text-heading5-bold {
+    font-size: 24px;
+  }
+  
+  .text-heading6-regular, .text-heading6-medium, .text-heading6-bold {
+    font-size: 22px;
+  }
+  
+  .text-large-regular, .text-large-medium, .text-large-bold {
+    font-size: 18px;
+  }
+  
+  .text-base-regular, .text-base-medium, .text-base-bold {
+    font-size: 16px;
+  }
+  
+  .text-small-regular, .text-small-medium, .text-small-bold {
+    font-size: 14px;
+  }
+  
+  .text-xsmall-regular, .text-xsmall-medium, .text-xsmall-bold {
+    font-size: 12px;
+  }
+}
+
+@screen lg {
+  .text-heading1-regular, .text-heading1-medium, .text-heading1-bold {
+    font-size: 48px;
+  }
+  
+  .text-heading2-regular, .text-heading2-medium, .text-heading2-bold {
+    font-size: 40px;
+  }
 }
 
