@@ -3,8 +3,6 @@ import vocoMuster from '../../assets/tunniplaan/VOCO muster.svg'
 import { Table } from '../../components/Table'
 import axios from 'axios'
 import { getApiUrl } from '../../utils/functions'
-import sampleGroupTimetable from './sampleGroupTimetable.json'
-import sampleRoomTimetable from './sampleRoomTimetable.json'
 
 const Tunniplaan = () => {
   const today = new Date();
@@ -16,7 +14,7 @@ const Tunniplaan = () => {
 
   const [timetableTitle, setTimetableTitle] = useState<string>("")
 
-  const [rooms, setRooms] = useState<string[]>([
+  const rooms = ([
     "",
     "A401",
     "A402",
@@ -46,15 +44,10 @@ const Tunniplaan = () => {
       axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${week}&grupp=${currentGroup}`)
       .then(response => {
         const data = response.data as ScheduleType
-        if(!data || !data.tunnid || Object.keys(data.tunnid).length === 0) {
-          setTimetableData(sampleGroupTimetable as ScheduleType)
-        } else {
-          setTimetableData(data)
-        }
+        setTimetableData(data)
       })
       .catch(error => {
         console.error("Error fetching timetable data:", error);
-        setTimetableData(sampleGroupTimetable as ScheduleType)
       })
     }
   }, [currentGroup, week])
@@ -66,11 +59,7 @@ const Tunniplaan = () => {
       axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${new Date().toISOString()}&ruum=${currentRoom}`)
       .then(response => {
         const data = response.data as ScheduleType
-        if(!data || !data.tunnid || Object.keys(data.tunnid).length === 0) {
-          setTimetableData(sampleRoomTimetable as ScheduleType)
-        } else {
-          setTimetableData(data)
-        }
+        setTimetableData(data)
       })
     }
   }, [currentRoom])

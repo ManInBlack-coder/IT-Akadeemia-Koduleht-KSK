@@ -3,5 +3,5 @@
 export const getApiUrl = () => {
     return import.meta.env.MODE === "production"
         ? "https://siseveeb.voco.ee"
-        : "https://test.voco.ee";
+        : "https://siseveeb.voco.ee";
 };

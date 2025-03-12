@@ -9,7 +9,6 @@ import Praktika from './pages/Praktika/Praktika';
 import Tunniplaan from './pages/Tunniplaan/Tunniplaan';
 import Voistlused from './pages/Voistlused/Voistlused';
 import { Konsultatsioonid } from './pages/Konsultatsioonid/Konsultatsioonid';
-import { useState } from 'react';
 
 function App() {
   return (
