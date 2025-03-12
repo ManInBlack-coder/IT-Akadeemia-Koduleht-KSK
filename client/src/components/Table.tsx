@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import arrow_down from "../assets/icons/arrow-down.svg";
 import { TimetableItem } from "./TimetableItem";
 import { ConsultationItem } from "./ConsultationItem";
