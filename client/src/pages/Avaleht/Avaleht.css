@@ -5,8 +5,22 @@
     background-position: center;
 }
 
-.example{
-    background-image: url('/src/assets/avaleht/example1.png');
+.avaleht-eriala{
+    background-image: url('/src/assets/avaleht/avalehtEriala.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.avaleht-ruumid{
+    background-image: url('/src/assets/avaleht/avalehtRuumid.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.avaleht-koostoo{
+    background-image: url('/src/assets/avaleht/avalehtKoostoo.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
