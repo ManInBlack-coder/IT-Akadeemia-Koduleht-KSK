@@ -3,37 +3,28 @@ import vocoMuster from '../../assets/tunniplaan/VOCO muster.svg'
 import { Table } from '../../components/Table'
 import axios from 'axios'
 import { getApiUrl } from '../../utils/functions'
+import rooms from './ruumid.json'
 
 const Tunniplaan = () => {
   const today = new Date();
   const firstDayOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 1));
   const formattedDate = firstDayOfWeek.toISOString().split('T')[0];
   const [week, setWeek] = useState<string>(formattedDate)
-  const [currentRoom, setCurrentRoom] = useState<string>("")
-  const [currentGroup, setCurrentGroup] = useState<string>("")
+  const [currentRoom, setCurrentRoom] = useState<string | null>(null)
+  const [currentGroup, setCurrentGroup] = useState<string | null>(null)
 
   const [timetableTitle, setTimetableTitle] = useState<string>("")
-
-  const rooms = ([
-    "",
-    "A401",
-    "A402",
-    "A403",
-    "A404",
-    "A405",
-    "A406",
-    "A407",
-  ])
 
   const [groups, setGroups] = useState<Grupp[] | undefined>()
 
   const [timetableData, setTimetableData] = useState<ScheduleType | undefined>()
 
   useEffect(() => {
+    console.log(rooms)
     axios.get(`${getApiUrl()}/veebilehe_andmed/oppegrupid?seisuga=not_ended`)
     .then(response => {
       const data = response.data as { grupid: Grupp[] }
-      setGroups([{id: 0, tahis: "", oppekava: "", kursus: 0}, ...data.grupid])
+      setGroups([{id: 0, tahis: "Vali õppegrupp", oppekava: "", kursus: 0}, ...data.grupid])
     })
   }, [])
 
@@ -55,8 +46,8 @@ const Tunniplaan = () => {
   useEffect(() => {
     if(currentRoom) {
       setCurrentGroup("")
-      setTimetableTitle(`Tunniplaan ${currentRoom}`)
-      axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${new Date().toISOString()}&ruum=${currentRoom}`)
+      setTimetableTitle(`Tunniplaan ${rooms[currentRoom as keyof typeof rooms]}`)
+      axios.get(`${getApiUrl()}/veebilehe_andmed/tunniplaan?nadal=${week}&ruum=${currentRoom}`)
       .then(response => {
         const data = response.data as ScheduleType
         setTimetableData(data)
@@ -87,11 +78,13 @@ const Tunniplaan = () => {
             </div>
             <div className='flex flex-col items-start justify-center h-full w-full md:w-[200px]'>
               <label className="text-small-medium text-black">Vali ruum</label>
-              <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => {setCurrentRoom(e.target.value)}}>
-                {rooms.map((room) => (
-                  <option key={room} className='text-base-light text-black bg-white p-4 border border-black'>{room}</option>
-                ))}
-              </select>
+              {rooms && (
+                <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2' onChange={(e) => {setCurrentRoom(e.target.value)}}>
+                  {Object.entries(rooms).map(([roomKey, roomValue]) => (
+                    <option key={roomKey} value={roomKey} className='text-base-light text-black bg-white p-4 border border-black'>{roomValue}</option>
+                  ))}
+                </select>
+              )}
             </div>
           </div>
           <div className='flex flex-col items-center justify-center w-full h-full'>
