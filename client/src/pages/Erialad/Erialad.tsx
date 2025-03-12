@@ -124,7 +124,6 @@ const Erialad = () => {
       <div className={`erialad-bg flex w-full justify-center min-h-80 lg:min-h-[550px] px-4`}>
         <div className="z-1 flex text-white font-semibold justify-end items-center flex-col text-center gap-4 md:gap-12 pb-16 lg:pb-48">
           <h1 className="text-heading3-bold md:text-heading1-bold text-2xl text-black lg:text-[40px]">ÕPI, MIS SIND HUVITAB</h1>
-          <div className="h-1 w-24 bg-itkool mb-4 mx-auto lg:mx-0"></div>
           <p className='w-3/4 text-base-medium text-black lg:text-heading3-bold'> Talvine vastuvõtt on avatud 2.-16 jaanuarini. Õpe on kõigile tasuta</p>
         </div>
       </div>
@@ -220,7 +219,7 @@ const Erialad = () => {
                     <div className="p-5 lg:flex lg:flex-col lg:justify-between">
                       <div>
                         <h3 className="text-heading5-bold mb-3 text-center lg:text-left">{studyProgramValue.oppekava_nimetus}</h3>
-                        <div className="h-1 w-24 bg-itkool mb-4 mx-auto lg:mx-0"></div>
+                        <div className="h-1 w-[180px] bg-itkool mb-4 mx-auto lg:mx-0"></div>
                         <p className="text-large-medium mb-4">
                           Lorem ipsum dolor sit amet consectetur. Morbi lectus cursus morbi massa felis nunc. Integer eu dolor sapien sapien. Faucibus vel
                         </p>

@@ -1,7 +1,7 @@
 import './Avaleht.css'
 import { Link } from 'react-router-dom'
 import technologist from '../../assets/avaleht/technologist.png'
-import example2 from '../../assets/avaleht/example2.png'
+import syndmus from '../../assets/avaleht/syndmus.png'
 import { Button } from '../../components/Button'
 
 // Event type definition
@@ -25,7 +25,7 @@ const eventsData: {
       location: "Põllu õppehoone",
       date: "12.12.2024",
       time: "12.00 – 18.00",
-      image: example2
+      image: syndmus
     }
   ],
   peagiTulekul: [
@@ -34,14 +34,14 @@ const eventsData: {
       location: "Põllu õppehoone",
       date: "20.12.2024",
       time: "12.00 – 18.00",
-      image: example2
+      image: syndmus
     },
     {
       title: "Programmeerimisvõistlus",
       location: "IT-maja",
       date: "22.12.2024",
       time: "09.00 – 17.00",
-      image: example2
+      image: syndmus
     }
   ],
   pikkaajalised: [
@@ -50,21 +50,21 @@ const eventsData: {
       location: "Põllu õppehoone",
       date: "12.12.2024",
       time: "12.00 – 18.00",
-      image: example2
+      image: syndmus
     },
     {
       title: "Kursus: Veebiarenduse alused",
       location: "IT-maja",
       date: "15.01.2025 - 15.03.2025",
       time: "18.00 – 20.00",
-      image: example2
+      image: syndmus
     },
     {
       title: "IT Karjääripäev",
       location: "Peahoone",
       date: "12.12.2024",
       time: "10.00 – 16.00",
-      image: example2
+      image: syndmus
     }
   ]
 };
@@ -97,10 +97,11 @@ const Avaleht = () => {
       </div>
       <div className='flex flex-col lg:w-full items-center gap-y-[24px] lg:gap-y-[48px]'>
         {/* First */}
-        <div className='bg-vocogray flex w-5/6 lg:w-4/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px] mt-[46px]'>
+        <div className='bg-vocogray flex w-5/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px] mt-[46px]'>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
-            <div className='lg:hidden flex w-full min-h-80 example'></div>
+            <div className='lg:hidden flex w-full min-h-80 avaleht-eriala'></div>
             <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Võimalusterohke õppimine IT ja ärivaldkonnas</div>
+            <div className="hidden lg:block h-1 w-[180px] bg-itkool mb-4 mx-auto lg:mx-0"></div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
                 <Button buttonText="Leia Eriala" color="black"/>
@@ -108,17 +109,18 @@ const Avaleht = () => {
             </div>
           </div>
           <div className='hidden lg:flex lg:w-1/2 lg:min-h-full'>
-            <div className='w-full h-full bg-cover bg-center example'></div>
+            <div className='w-full h-full bg-cover bg-center avaleht-eriala'></div>
           </div>
         </div>
         {/* Second */}
-        <div className='bg-vocogray flex w-5/6 lg:w-4/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px]'>
+        <div className='bg-vocogray flex w-5/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px]'>
           <div className='hidden lg:flex lg:w-1/2 lg:min-h-full order-1 lg:order-none'>
-            <div className='w-full h-full bg-cover bg-center example'></div>
+            <div className='w-full h-full bg-cover bg-center avaleht-ruumid'></div>
           </div>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
-            <div className='lg:hidden flex w-full min-h-80 example'></div>
+            <div className='lg:hidden flex w-full min-h-80 avaleht-ruumid'></div>
             <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Kaasaegsed õpperuumid ja laborid</div>
+            <div className="hidden lg:block h-1 w-[180px] bg-itkool mb-4 mx-auto lg:mx-0"></div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
                 <Button buttonText="Leia Eriala" color="black"/>
@@ -127,10 +129,11 @@ const Avaleht = () => {
           </div>
         </div>
         {/* Third */}
-        <div className='bg-vocogray flex w-5/6 lg:w-4/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px]'>
+        <div className='bg-vocogray flex w-5/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px]'>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
-            <div className='lg:hidden flex w-full min-h-80 example'></div>
+            <div className='lg:hidden flex w-full min-h-80 avaleht-koostoo'></div>
             <div className='flex text-heading6-bold lg:text-heading3-bold text-center lg:text-left w-5/6 lg:w-full'>Tihe koostöö juhtivate ettevõtetega</div>
+            <div className="hidden lg:block h-1 w-[180px] bg-itkool mb-4 mx-auto lg:mx-0"></div>
             <div className='flex justify-center lg:justify-start mt-[24px] mb-[24px] lg:mt-8 lg:mb-0'>
               <Link to="/erialad">
                 <Button buttonText="Leia Eriala" color="black"/>
@@ -138,7 +141,7 @@ const Avaleht = () => {
             </div>
           </div>
           <div className='hidden lg:flex lg:w-1/2 lg:min-h-full'>
-            <div className='w-full h-full bg-cover bg-center example'></div>
+            <div className='w-full h-full bg-cover bg-center avaleht-koostoo'></div>
           </div>
         </div>
       </div>
