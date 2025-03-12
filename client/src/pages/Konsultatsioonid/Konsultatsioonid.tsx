@@ -317,12 +317,11 @@ export const Konsultatsioonid = () => {
   // Uuendame tabelit, kui nädal muutub
   useEffect(() => {
     setIsLoading(true);
-    
-    // API päring konsultatsioonide andmete saamiseks
-    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=${hoone}&aasta=${new Date().getFullYear()}&periood=1&nadal=${week}`)
+    axios.get(`https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=ALL`)
       .then(response => {
         const data = response.data as KonsultatsioonidData;
-        setOriginalData(data); // Salvestame originaalandmed
+        setOriginalData(data);
+        setTeachers([...new Set(data.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
         const newData = convertToScheduleType(data, week, activeFilters);
         setTimetableData(newData);
         setIsLoading(false);
@@ -332,19 +331,6 @@ export const Konsultatsioonid = () => {
         setIsLoading(false);
       });
   }, [week, activeFilters, hoone]);
-
-  // Laeme õpetajate nimekirja
-  useEffect(() => {
-    // API päring õpetajate nimekirja saamiseks
-    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=${hoone}&aasta=${new Date().getFullYear()}&periood=1`)
-      .then(response => {
-        const data = response.data as KonsultatsioonidData;
-        setTeachers([...new Set(data.konsultatsioonid.map((k: KonsultatsioonType) => k.opetaja))].sort());
-      })
-      .catch(error => {
-        console.error("Error fetching teachers data:", error);
-      });
-  }, [hoone]);
 
   // Otsingu funktsioon
   const handleSearch = () => {
