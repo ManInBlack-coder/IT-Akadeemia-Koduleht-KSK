@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import './Voistlused.css';
+import { Button } from '../../components/Button';
 
 const Voistlused = () => {
   const [selectedYear, setSelectedYear] = useState('2025');
@@ -116,14 +118,8 @@ const Voistlused = () => {
   return (
     <div className="flex flex-col w-full min-h-screen justify-start items-center md:gap-4 overflow-hidden">
       <div 
-        className="w-full min-h-96 flex items-center justify-center bg-black"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url(/src/assets/images/voistlusedtaust.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          margin: 0,
-          padding: 0
-        }}
+        className="  w-full min-h-96 flex items-center justify-center bg-black hero-banner"
+      
       >
         <div className='z-1 flex text-white font-semibold justify-center items-center flex-col text-center gap-8 md:gap-12 py-8 md:text-sm'>
           <h1 className="text-heading3-bold md:text-heading1-bold text-2xl md:text-[40px] uppercase">
@@ -258,20 +254,18 @@ const Voistlused = () => {
                       (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal.
                     </p>
                   </div>
-                  <div className="p-4 flex items-center justify-center bg-lightvocogray overflow-hidden">
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
-                      Vaata juhendeid
-                    </a>
+                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
+                  <Button buttonText="Vaata juhendeid" color='blue' />
+
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
-                  <div className="p-4 flex items-center justify-center bg-vocogray overflow-hidden">
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
-                      Vaata juhendeid
-                    </a>
+                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
+                  <Button buttonText="Vaata juhendeid" color='blue' />
+
                   </div>
                 </div>
 
@@ -279,9 +273,8 @@ const Voistlused = () => {
                   <div className="p-4" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden></div>
                   <div className="p-4 bg-lightvocogray overflow-hidden"></div>
                   <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
-                    <a href="#" className="bg-itkool text-xl text-large-bold px-8 text-white button-hover p-3 flex justify-center items-center">
-                      Vaata juhendeid
-                    </a>
+                  <Button buttonText="Vaata juhendeid" color='blue' />
+
                   </div>
                 </div>
               </div>
