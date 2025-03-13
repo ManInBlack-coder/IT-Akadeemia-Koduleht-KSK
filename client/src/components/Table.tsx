@@ -53,8 +53,8 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
 
   return (
     <div className="overflow-x-auto mt-4">
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 bg-white border p-4 relative">
-        <h1 className="hidden md:block absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-4 bg-white border p-4 relative">
+        <h1 className="hidden lg:block absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
         <div className="flex flex-row items-center justify-center gap-4">
           <button className="p-1" onClick={() => {
             const newWeek = new Date(new Date(week).getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
@@ -102,7 +102,7 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
 
               return (
                 <tr key={time}>
-                  <td className="border p-4 text-left text-base-regular w-1/6">
+                  <td className="border p-4 text-left text-base-regular w-1/6 overflow-hidden">
                     <p className="text-base-medium text-[#677083]">{times[time]}</p>
                   </td>
                   {days.map((day: string, dayIndex: number) => (
