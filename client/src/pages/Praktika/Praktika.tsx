@@ -138,15 +138,15 @@ const Praktika = () => {
     },
     {
       text: "Praktikakohad",
-      link: "/"
+      link: "https://docs.google.com/spreadsheets/d/1izdG_kONMn4sTa9Ho0AWfeCzFh1jgwoKYPeZZYypxHo/edit?gid=0#gid=0"
     },
     {
       text: "Praktikaprotsess",
-      link: "/"
+      link: "https://moodle.voco.ee/pluginfile.php/25634/mod_resource/content/1/Praktikaprotsessi%20joonis.png"
     },
     {
       text: "Praktika tingimused",
-      link: "/"
+      link: "https://moodle.voco.ee/pluginfile.php/25685/mod_folder/content/0/Praktilise%20t%C3%B6%C3%B6%20ning%20praktika%20l%C3%A4biviimise%20tingimused%20ja%20kord.pdf?forcedownload=1"
     }
   ]
 
@@ -263,7 +263,7 @@ const Praktika = () => {
             <p className="text-large-medium text-center md:text-left">IT-akadeemia praktikatega seotud juhendid ja materjalid leiad siit.</p>
             <div className="grid grid-cols-2 w-full gap-4">
               {praktikaLinks.map((link) => (
-                <a key={link.text} href={link.link} className='flex justify-start gap-2 items-center'>
+                <a key={link.text} href={link.link} target="_blank" rel="noopener noreferrer" className='flex justify-start gap-2 items-center'>
                   <img src={documentIcon} className="w-5"/>
                   <p className="text-itkool text-base-bold hover:underline">{link.text}</p>
                 </a>

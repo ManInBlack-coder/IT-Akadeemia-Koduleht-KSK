@@ -16,7 +16,7 @@ export const ConsultationItem: React.FC<ConsultationItemProps> = ({
   time
 }) => {
   return (
-    <div className="flex flex-col items-center md:items-start justify-center w-full gap-1 text-center md:text-left">
+    <div className="flex flex-col items-center md:items-start justify-center w-full gap-1 text-center md:text-left overflow-hidden">
       <div className="flex flex-col items-center md:items-start">
         <span className="font-bold text-base">{subject}</span>
         <span className="text-sm">{teacher}</span>
