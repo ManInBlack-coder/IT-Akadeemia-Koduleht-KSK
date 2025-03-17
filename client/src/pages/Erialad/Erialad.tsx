@@ -131,12 +131,12 @@ const Erialad = () => {
       {/* Filter section */}
       <div className="w-full mt-8 px-4 space-y-[24px] lg:pb-[88px]">
         {/* Filter dropdowns */}
-      <div className='flex flex-col lg:flex-row lg:gap-x-[32px] lg:ml-[150px]'>
-          <div className="flex flex-col lg:flex-row lg:gap-x-[32px] gap-y-[12px]">
+        <div className='flex flex-col lg:flex-row lg:gap-x-[32px] w-full'>
+          <div className="flex flex-col lg:flex-row lg:gap-x-[32px] gap-y-[12px] w-full lg:flex-1">
             {/* Education requirement filter */}
-            <div className="relative border-2 border-black">
+            <div className="relative border-2 border-black w-full">
               <select 
-                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
                 value={educationRequirement}
                 onChange={(e) => setEducationRequirement(e.target.value)}
               >
@@ -154,9 +154,9 @@ const Erialad = () => {
             </div>
             
             {/* Achievable level filter */}
-            <div className="relative border-2 border-black">
+            <div className="relative border-2 border-black w-full">
               <select 
-                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
                 value={achievableLevel}
                 onChange={(e) => setAchievableLevel(e.target.value)}
               >
@@ -173,9 +173,9 @@ const Erialad = () => {
             </div>
             
             {/* Study form filter */}
-            <div className="relative border-2 border-black">
+            <div className="relative border-2 border-black w-full">
               <select 
-                className="flex w-full lg:min-w-[300px] p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
+                className="flex w-full p-4 appearance-none bg-white text-black text-large-bold text-center focus:outline-none"
                 value={studyForm}
                 onChange={(e) => setStudyForm(e.target.value)}
               >
@@ -193,8 +193,8 @@ const Erialad = () => {
           </div>
           
           {/* Search button */}
-          <div className="flex lg:min-w-[250px] justify-center pt-[24px] lg:pt-0">
-            <Button buttonText="Otsi Eriala" color="black" onClick={() => applyFilters()}/>
+          <div className="flex justify-center pt-[24px] lg:pt-0 w-full lg:w-auto">
+            <Button span={true} buttonText="Otsi Eriala" color="black" onClick={() => applyFilters()}/>
           </div>
         </div>
       </div>

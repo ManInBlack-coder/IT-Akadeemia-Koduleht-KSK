@@ -95,7 +95,7 @@ const Avaleht = () => {
           <h2 className="text-large-medium lg:text-heading5-bold text-center ">Pakume <span className="text-large-bold lg:text-heading5-bold">mitmekesiseid</span><br className='block lg:hidden'/> õppimisvõimalusi ja <span className="text-large-bold lg:text-heading5-bold">tihedat koostööd</span><br className='block lg:hidden'/> <span className="text-large-bold lg:text-heading5-bold">ettevõtetega</span>, et aidata sul saavutada<br className='block lg:hidden'/> oma eesmärgid.</h2>
         </div>
       </div>
-      <div className='flex flex-col lg:w-full items-center gap-y-[24px] lg:gap-y-[48px]'>
+      <div className='flex flex-col w-full 2xl:w-[1440px] items-center gap-y-[24px] lg:gap-y-[48px]'>
         {/* First */}
         <div className='bg-vocogray flex w-5/6 flex-col lg:flex-row min-h-80 lg:min-h-[500px] mt-[46px]'>
           <div className='flex flex-col gap-y-[37px] items-center lg:items-start lg:justify-center lg:w-1/2 lg:pl-16 lg:py-8'>
@@ -145,7 +145,7 @@ const Avaleht = () => {
           </div>
         </div>
       </div>
-      <div className='bg-vocogray flex flex-col w-full min-h-screen px-4 mt-[79px] pb-[98px]'>
+      <div className='bg-vocogray flex flex-col w-full px-4 mt-[79px] pb-[98px]'>
         <div className='flex flex-col text-center gap-y-[28px] mt-[68px]'>
           <div className='text-heading3-bold'>SÜNDMUSED VOCO-s</div>
           <div className='text-large-medium'>Hoia end kursis VOCO-s toimuvate põnevate üritustega!</div>
