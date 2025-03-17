@@ -188,10 +188,10 @@ const Praktika = () => {
         </div>
       </div>
       <div className="w-full min-h-96 flex justify-center items-center py-8 md:py-12 px-4">
-        <div className="w-full md:w-5/6 flex flex-col justify-center items-start gap-8">
+        <div className="w-full xl:w-5/6 flex flex-col justify-center items-start gap-8">
           <h2 className='text-heading2-bold'>Praktikale kandideerimise protsess</h2>
           <div className="flex flex-col w-full justify-center items-center gap-8 md:gap-16">
-            <div className="flex flex-col lg:flex-row w-full justify-between gap-8 lg:gap-12 xl:gap-16">
+            <div className="flex flex-col lg:flex-row w-full justify-between gap-8 sm:gap-12 lg:gap-8 xl:gap-16">
               {praktikaJourney.slice(0, 3).map((component, index) => (
                 <PraktikaJourneryComponent 
                   key={index}
@@ -202,7 +202,7 @@ const Praktika = () => {
                 />
               ))}
             </div>
-            <div className="flex flex-col md:flex-row w-full justify-between gap-8 md:gap-16">
+            <div className="flex flex-col lg:flex-row w-full justify-between gap-8 sm:gap-12 lg:gap-8 xl:gap-16">
               {praktikaJourney.slice(3, 5).map((component, index) => (
                 <PraktikaJourneryComponent
                   key={index + 3}
@@ -250,7 +250,7 @@ const Praktika = () => {
             </p>
           </div>
           <Button buttonText='VOCOMOBILTY' color='blue' onClick={() => window.open("https://en.voco.ee/category/mobility/", "_blank")}/>
-          <img className='-z-10 absolute bottom-0 right-10' src={erasmusLogo}/>
+          <img className='-z-10 absolute bottom-0 right-10 hidden md:block' src={erasmusLogo}/>
         </div>
       </div>
       <div id="documents"className="flex w-full justify-center items-center min-h-96 py-8 md:py-12 px-4">
