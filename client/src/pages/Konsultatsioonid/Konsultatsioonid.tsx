@@ -317,7 +317,7 @@ export const Konsultatsioonid = () => {
   // Uuendame tabelit, kui nädal muutub
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=ALL`)
+    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=ALL`)
       .then(response => {
         const data = response.data as KonsultatsioonidData;
         setOriginalData(data);

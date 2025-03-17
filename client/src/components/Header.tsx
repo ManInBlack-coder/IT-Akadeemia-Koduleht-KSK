@@ -1,4 +1,4 @@
-import headerLogo from '../assets/logo.svg'
+import headerLogo from '../assets/logo.png'
 import { Link, useLocation } from 'react-router-dom';
 import menuIcon from '../assets/icons/menuIcon.svg';
 import { useState } from 'react';
@@ -13,7 +13,7 @@ export const Header = () => {
     <div className="w-full bg-black p-4 flex flex-col justify-start items-center z-20 relative">
         <div className="flex flex-row justify-around md:justify-center md:gap-12 items-center w-full">
             <Link to="/">
-                <img src={headerLogo}/>
+                <img src={headerLogo} width={200}/>
             </Link>
             <div className="hidden md:flex gap-12 h-full items-center">
                 <Link to="/erialad">
