@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Table } from "../../components/Table"
 import axios from 'axios'
-import './Konsultatsioonid.css'
 import { getApiUrl } from '../../utils/functions'
 import vocoMuster from '../../assets/konsultatsioonid/VOCO_RGB_TAUST.svg'
 //https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=KPL&aasta=2024&periood=1&nadal=2024-03-18
