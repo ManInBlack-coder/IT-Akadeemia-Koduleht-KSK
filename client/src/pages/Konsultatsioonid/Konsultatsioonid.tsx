@@ -386,7 +386,7 @@ export const Konsultatsioonid = () => {
               <select 
                 value={selectedTeacher}
                 onChange={(e) => setSelectedTeacher(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik õpetajad</option>
                 {teachers.map((teacher) => (
@@ -395,12 +395,11 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-
             <div className='w-full md:w-auto mt-4 md:mt-0'>
               <select 
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik kuupäevad</option>
                 {getDateRanges().map((range) => (
@@ -413,7 +412,7 @@ export const Konsultatsioonid = () => {
               <select 
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik ajad</option>
                 {getAvailableTimes().map((time) => (
@@ -422,12 +421,10 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-           
-
             <div className='w-full md:w-auto mt-4 md:mt-0'>
               <button 
                 onClick={handleSearch}
-                className="bg-black text-white p-3 rounded w-full text-center"
+                className="bg-black text-white p-3 rounded w-full transition duration-300 "
               >
                 Otsi
               </button>

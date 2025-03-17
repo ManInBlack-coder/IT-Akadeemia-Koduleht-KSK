@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Voistlused.css';
 import { Button } from '../../components/Button';
 
@@ -6,6 +6,7 @@ const Voistlused = () => {
   const [selectedYear, setSelectedYear] = useState('2025');
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [currentNoorMeisterIndex, setCurrentNoorMeisterIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   const years = ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'];
   
@@ -115,6 +116,17 @@ const Voistlused = () => {
     return allSlides.slice(currentIndex, currentIndex + 3);
   };
 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+
   return (
     <div className="flex flex-col w-full min-h-screen justify-start items-center md:gap-4 overflow-hidden">
       <div 
@@ -171,7 +183,7 @@ const Voistlused = () => {
             </div>
 
             <div className="divide-y-4 divide-white overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+              <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                 <div className="p-4 bg-vocogray overflow-hidden">
                   <div className="text-large-bold">Kopli 1 A-411</div>
                   <div className='text-large-bold'>Kopli 1 A-418</div>
@@ -193,7 +205,7 @@ const Voistlused = () => {
                 <div className="p-4 bg-vocogray overflow-hidden"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+              <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                 <div className="p-4 bg-lightvocogray overflow-hidden">
                   <div className="text-large-bold">25.-27.02 Kopli 1 A-407</div>
                 </div>
@@ -203,7 +215,7 @@ const Voistlused = () => {
                 <div className="p-4 bg-lightvocogray overflow-hidden"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+              <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                 <div className="p-4 bg-vocogray overflow-hidden">
                   <div className="text-large-bold">05.03 Kopli 1 A-303</div>
                 </div>
@@ -213,7 +225,7 @@ const Voistlused = () => {
                 <div className="p-4 bg-vocogray overflow-hidden"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+              <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                 <div className="p-4 bg-lightvocogray overflow-hidden">
                   <div className="text-large-bold">05.03 Kopli 1 A-418</div>
                 </div>
@@ -241,7 +253,7 @@ const Voistlused = () => {
               </div>
 
               <div className="divide-y-4 divide-white overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+                <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                   <div className="p-4 bg-lightvocogray overflow-hidden">
                     <div className="text-large-bold">14. - 16. mai 2025</div>
                     <div className='text-large-bold'>Kuressaare</div>
@@ -260,19 +272,19 @@ const Voistlused = () => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+                <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
-                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
+                  <div className="p-4 flex  items-center justify-center overflow-hidden bg-vocogray"  >
                   <Button buttonText="Vaata juhendeid" color='blue' />
 
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] divide-x-4 divide-white overflow-hidden">
+                <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                   <div className="p-4" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden></div>
                   <div className="p-4 bg-lightvocogray overflow-hidden"></div>
-                  <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
+                  <div className="p-4 flex items-center justify-center " style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
                   <Button buttonText="Vaata juhendeid" color='blue' />
 
                   </div>

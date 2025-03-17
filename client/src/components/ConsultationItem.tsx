@@ -8,6 +8,11 @@ interface ConsultationItemProps {
   time: string;
 }
 
+// Funktsioon, mis muudab esimese tähe suureks
+const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+
 export const ConsultationItem: React.FC<ConsultationItemProps> = ({ 
   teacher, 
   subject, 
@@ -18,7 +23,7 @@ export const ConsultationItem: React.FC<ConsultationItemProps> = ({
   return (
     <div className="flex flex-col items-center md:items-start justify-center w-full gap-1 text-center md:text-left overflow-hidden">
       <div className="flex flex-col items-center md:items-start">
-        <span className="font-bold text-base">{subject}</span>
+        <span className="font-bold text-base">{capitalizeFirstLetter(subject)}</span>
         <span className="text-sm">{teacher}</span>
         <span className="text-sm text-gray-600">{room}</span>
         <span className="text-sm text-gray-600">{time}</span>
