@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Table } from "../../components/Table"
 import axios from 'axios'
+import './Konsultatsioonid.css'
 import { getApiUrl } from '../../utils/functions'
 import vocoMuster from '../../assets/konsultatsioonid/VOCO_RGB_TAUST.svg'
 //https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=KPL&aasta=2024&periood=1&nadal=2024-03-18
@@ -317,7 +318,7 @@ export const Konsultatsioonid = () => {
   // Uuendame tabelit, kui nädal muutub
   useEffect(() => {
     setIsLoading(true);
-    axios.get(`https://siseveeb.voco.ee/veebilehe_andmed/konsultatsioonid?hoone=ALL`)
+    axios.get(`${getApiUrl()}/veebilehe_andmed/konsultatsioonid?hoone=ALL`)
       .then(response => {
         const data = response.data as KonsultatsioonidData;
         setOriginalData(data);
@@ -386,7 +387,7 @@ export const Konsultatsioonid = () => {
               <select 
                 value={selectedTeacher}
                 onChange={(e) => setSelectedTeacher(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik õpetajad</option>
                 {teachers.map((teacher) => (
@@ -395,12 +396,11 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-
             <div className='w-full md:w-auto mt-4 md:mt-0'>
               <select 
                 value={selectedDate}
                 onChange={(e) => setSelectedDate(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik kuupäevad</option>
                 {getDateRanges().map((range) => (
@@ -413,7 +413,7 @@ export const Konsultatsioonid = () => {
               <select 
                 value={selectedTime}
                 onChange={(e) => setSelectedTime(e.target.value)}
-                className="border bg-white border-gray-300 p-3 rounded w-full"
+                className="border border-black bg-white text-black p-3 rounded w-full appearance-none"
               >
                 <option value="">Kõik ajad</option>
                 {getAvailableTimes().map((time) => (
@@ -422,12 +422,10 @@ export const Konsultatsioonid = () => {
               </select>
             </div>
 
-           
-
             <div className='w-full md:w-auto mt-4 md:mt-0'>
               <button 
                 onClick={handleSearch}
-                className="bg-black text-white p-3 rounded w-full text-center"
+                className="bg-black text-white p-3 rounded w-full transition duration-300 "
               >
                 Otsi
               </button>
