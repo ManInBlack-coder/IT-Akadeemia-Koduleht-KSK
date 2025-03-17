@@ -1,4 +1,4 @@
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo.png'
 export const Footer = () => {
   return (
     <div className='w-full bg-black p-8 flex flex-row justify-center items-center'>
