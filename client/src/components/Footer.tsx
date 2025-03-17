@@ -4,7 +4,7 @@ export const Footer = () => {
     <div className='w-full bg-black p-8 flex flex-row justify-center items-center'>
       <div className="flex flex-row justify-start items-start md:items-center gap-8 md:gap-32 w-full md:w-3/4">
         <div className='flex flex-col items-start justify-start'>
-          <img src={logo} alt="logo"/>
+          <img src={logo} alt="logo" width={200}/>
         </div>
         <div className='flex flex-col items-start justify-start gap-2'>
           <p className="text-small-bold md:text-large-bold text-white">Kontakt</p>
