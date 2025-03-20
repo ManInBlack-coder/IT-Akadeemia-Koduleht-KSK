@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import './Voistlused.css';
 import { Button } from '../../components/Button';
+import aasta1 from '../../assets/images/aasta1.png';
+import aasta2 from '../../assets/images/aasta2.png';
+import aasta3 from '../../assets/images/aasta3.png';
+
 
 const Voistlused = () => {
   const [selectedYear, setSelectedYear] = useState('2025');
@@ -13,37 +17,37 @@ const Voistlused = () => {
   const slides = [
     {
       id: 1,
-      image: '/src/assets/images/aasta1.png',
+      image: aasta1,
       alt: 'Võistlus pilt 1'
     },
     {
       id: 2,
-      image: '/src/assets/images/aasta2.png',
+      image: aasta2,
       alt: 'Võistlus pilt 2'
     },
     {
       id: 3,
-      image: '/src/assets/images/aasta3.png',
+      image: aasta3,
       alt: 'Võistlus pilt 3'
     },
     {
       id: 4,
-      image: '/src/assets/images/aasta1.png',
+      image: aasta1,
       alt: 'Võistlus pilt 4'
     },
     {
       id: 5,
-      image: '/src/assets/images/aasta2.png',
+      image: aasta2,
       alt: 'Võistlus pilt 5'
     },
     {
       id: 6,
-      image: '/src/assets/images/aasta3.png',
+      image: aasta3,
       alt: 'Võistlus pilt 6'
     },
     {
       id: 7,
-      image: '/src/assets/images/aasta1.png',
+      image: aasta1,
       alt: 'Võistlus pilt 7'
     },
   ];
