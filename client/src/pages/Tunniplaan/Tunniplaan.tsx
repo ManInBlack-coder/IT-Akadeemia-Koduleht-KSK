@@ -69,9 +69,9 @@ const Tunniplaan = () => {
             <div className='flex flex-col items-start justify-center h-full w-full md:w-[200px]'>
               <label className="text-small-medium text-black">Vali tunniplaan</label>
               {groups && (
-                <select className='text-base-regular text-black bg-white p-4 border border-black outline-none w-full mt-2 appearance-none' onChange={(e) => setCurrentGroup(e.target.value)}>
+                <select data-testid='grupp' className='text-base-regular text-black bg-white p-4 border border-black outline-none w-full mt-2 appearance-none' onChange={(e) => setCurrentGroup(e.target.value)}>
                   {groups.map((group) => (
-                    <option key={group.id} value={group.id} className='text-base-regular text-black bg-white border border-black'>{group.tahis}</option>
+                    <option data-testid={`group-${group.id}`} key={group.id} value={group.id} className='text-base-regular text-black bg-white border border-black'>{group.tahis}</option>
                   ))}
                 </select>
               )}
@@ -79,7 +79,7 @@ const Tunniplaan = () => {
             <div className='flex flex-col items-start justify-center h-full w-full md:w-[200px]'>
               <label className="text-small-medium text-black">Vali ruum</label>
               {rooms && (
-                <select className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2 appearance-none' onChange={(e) => {setCurrentRoom(e.target.value)}}>
+                <select data-testid='ruum'className='text-base-light text-black bg-white p-4 border border-black outline-none w-full mt-2 appearance-none' onChange={(e) => {setCurrentRoom(e.target.value)}}>
                   {Object.entries(rooms).map(([roomKey, roomValue]) => (
                     <option key={roomKey} value={roomKey} className='text-base-light text-black bg-white p-4 border border-black'>{roomValue}</option>
                   ))}

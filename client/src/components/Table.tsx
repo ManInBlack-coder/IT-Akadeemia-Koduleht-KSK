@@ -52,7 +52,7 @@ export const Table: React.FC<TableProps> = ({ week, setWeek, type, data, title }
   };
 
   return (
-    <div className="overflow-x-auto mt-4">
+    <div className="overflow-x-auto mt-4" data-testid="table">
       <div className="flex flex-col lg:flex-row justify-center items-center gap-4 bg-white border p-4 relative">
         <h1 className="hidden lg:block absolute left-5 top-5 text-heading6-bold text-black text-center">{title ? title : "Tunniplaan"}</h1>
         <div className="flex flex-row items-center justify-center gap-4">
