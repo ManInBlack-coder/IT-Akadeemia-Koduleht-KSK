@@ -4,6 +4,9 @@ import { Button } from '../../components/Button';
 import aasta1 from '../../assets/images/aasta1.png';
 import aasta2 from '../../assets/images/aasta2.png';
 import aasta3 from '../../assets/images/aasta3.png';
+import noor1 from '../../assets/images/noor1.png';
+import noor2 from '../../assets/images/noor2.png';
+import noor3 from '../../assets/images/noor3.png';
 
 
 const Voistlused = () => {
@@ -55,37 +58,37 @@ const Voistlused = () => {
   const noorMeisterSlides = [
     {
       id: 1,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 1'
     },
     {
       id: 2,
-      image: '/src/assets/images/noor2.png',
+      image: noor2,
       alt: 'Noor meister pilt 2'
     },
     {
       id: 3,
-      image: '/src/assets/images/noor3.png',
+      image: noor3,
       alt: 'Noor meister pilt 3'
     },
     {
       id: 4,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 4'
     },
     {
       id: 5,
-      image: '/src/assets/images/noor2.png',
+      image: noor2,
       alt: 'Noor meister pilt 5'
     },
     {
       id: 6,
-      image: '/src/assets/images/noor3.png',
+      image: noor3,
       alt: 'Noor meister pilt 6'
     },
     {
       id: 7,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 7'
     },
   
@@ -114,6 +117,9 @@ const Voistlused = () => {
       prev === 0 ? noorMeisterSlides.length - 3 : prev - 1
     );
   };
+
+  
+  
 
   // Funktsioon, mis tagastab hetkel näidatavad 3 pilti
   const getVisibleSlides = (allSlides: any[], currentIndex: number) => {
@@ -374,7 +380,7 @@ const Voistlused = () => {
                 </button>
                 
                 <div className="flex justify-center gap-2 w-full overflow-hidden"> 
-                  {getVisibleSlides(slides, currentSlideIndex).map((slide: any) => (
+                  {getVisibleSlides(slides, currentNoorMeisterIndex).map((slide: any) => (
                     <div 
                       key={slide.id} 
                       className="flex justify-center items-center w-1/3"
