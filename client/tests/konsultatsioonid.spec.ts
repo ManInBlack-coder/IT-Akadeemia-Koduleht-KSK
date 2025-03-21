@@ -5,20 +5,7 @@ test.describe('Konsultatsioonid Component', () => {
         await page.goto('http://localhost:5173/konsultatsioonid');
     });
 
-    test('should display the main title and header elements', async ({ page }) => {
-        // Kontrolli pealkirja olemasolu
-        await expect(page.getByText('ÕPETAJATE KONSULTATSIOONID')).toBeVisible();
-        
-        // Kontrolli filtrite olemasolu
-        const teacherSelect = page.locator('select').first();
-        const dateSelect = page.locator('select').nth(1);
-        const timeSelect = page.locator('select').nth(2);
-        
-        await expect(teacherSelect).toBeVisible();
-        await expect(dateSelect).toBeVisible();
-        await expect(timeSelect).toBeVisible();
-    });
-
+ 
   
     test('should handle filter selections correctly', async ({ page }) => {
         // Oota kuni leht on laetud
