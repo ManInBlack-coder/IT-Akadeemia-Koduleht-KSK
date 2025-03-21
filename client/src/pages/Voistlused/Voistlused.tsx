@@ -279,7 +279,7 @@ const Voistlused = () => {
                 <div className={`grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr]  ${isMobile ? 'divide-x-5' : 'divide-x-4'} divide-white overflow-hidden`}>
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
                   <div className="p-4 bg-vocogray overflow-hidden"></div>
-                  <div className="p-4 flex  items-center justify-center overflow-hidden bg-vocogray"  >
+                  <div className="p-4 flex  items-center justify-center bg-vocogray"  overflow-hidden >
                   <Button buttonText="Vaata juhendeid" color='blue' />
 
                   </div>
@@ -374,7 +374,7 @@ const Voistlused = () => {
                 </button>
                 
                 <div className="flex justify-center gap-2 w-full overflow-hidden"> 
-                  {getVisibleSlides(noorMeisterSlides, currentNoorMeisterIndex).map((slide: any) => (
+                  {getVisibleSlides(slides, currentSlideIndex).map((slide: any) => (
                     <div 
                       key={slide.id} 
                       className="flex justify-center items-center w-1/3"
