@@ -4,6 +4,9 @@ import { Button } from '../../components/Button';
 import aasta1 from '../../assets/images/aasta1.png';
 import aasta2 from '../../assets/images/aasta2.png';
 import aasta3 from '../../assets/images/aasta3.png';
+import noor1 from '../../assets/images/noor1.png';
+import noor2 from '../../assets/images/noor2.png';
+import noor3 from '../../assets/images/noor3.png';
 
 
 const Voistlused = () => {
@@ -55,37 +58,37 @@ const Voistlused = () => {
   const noorMeisterSlides = [
     {
       id: 1,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 1'
     },
     {
       id: 2,
-      image: '/src/assets/images/noor2.png',
+      image: noor2,
       alt: 'Noor meister pilt 2'
     },
     {
       id: 3,
-      image: '/src/assets/images/noor3.png',
+      image: noor3,
       alt: 'Noor meister pilt 3'
     },
     {
       id: 4,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 4'
     },
     {
       id: 5,
-      image: '/src/assets/images/noor2.png',
+      image: noor2,
       alt: 'Noor meister pilt 5'
     },
     {
       id: 6,
-      image: '/src/assets/images/noor3.png',
+      image: noor3,
       alt: 'Noor meister pilt 6'
     },
     {
       id: 7,
-      image: '/src/assets/images/noor1.png',
+      image: noor1,
       alt: 'Noor meister pilt 7'
     },
   
@@ -114,6 +117,9 @@ const Voistlused = () => {
       prev === 0 ? noorMeisterSlides.length - 3 : prev - 1
     );
   };
+
+  
+  
 
   // Funktsioon, mis tagastab hetkel näidatavad 3 pilti
   const getVisibleSlides = (allSlides: any[], currentIndex: number) => {
@@ -149,10 +155,10 @@ const Voistlused = () => {
           <h1 className="text-3xl font-bold mb-4 text-center md:text-left">Kutsevõistlus "Aasta Tegija"</h1>
           
           <p className="text-base-regular mb-8">
-            On aeg anda stardipuuk kutsevõistlustele "Aasta Tegija 2025"! Ehkki esimesed võistlused alustavad juba jaanuaris jääb
-            suurem osa võistlustest siiski märtsikuusse. Kutsemeistrivõistlustel toimuvad 37. võistlusalal. Selguvad parimad noored
-            meistrid, kellest mitmed lähevad kooli esindama üleriigilistele rahvusvahelistele võistlustele. Iga ala parim pärjatakse 7.
-            märtsil toimuval lõpugalal tiitliga "Aasta Tegija 2025". IT Akadeemias on võimalik võistelda järgmistel võistlustel:
+          On aeg anda stardipauk kutsevõistlustele „Aasta Tegija 2025“! Ehkki esimesed võistlused alustavad juba jaanuaris jääb suurem osa võistlustest siiski märtsikuusse. Kutsemeistrivõistlused toimuvad 37. võistlusalal. 
+          Selguvad parimad noored meistrid, kellest mitmed lähevad kooli esindama üleriigilistele ja rahvusvahelistele võistlustele. 
+          Iga ala parim pärjatakse 7. märtsil toimuval lõpugalal tiitliga “Aasta Tegija 2025”. 
+          IT Akadeemias on võimalik võistelda järgmistel võistlustel:
           </p>
 
           {/* Aastate valik - keritav telefonivaates */}
@@ -196,14 +202,16 @@ const Voistlused = () => {
                 </div>
                 <div className="p-4 bg-vocogray overflow-hidden">
                   <h3 className="font-bold mb-2">Noorematarkvaraarendaja</h3>
-                  <p className="mb-2">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnajäätuseid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kesklikkuse eluviisist.</p>
-                  <p className="mb-2">Valmistatud rakendus peab aitama täita mitmeid kesklikkuse eesmärke:</p>
+                  <p className="mb-2">Luua rakendus, mis aitab vähendada toidujäätmeid ja keskkonnamõjusid, edendades kogukonnasisest koostööd, säästlikku tarbimist ning tõstes teadlikkust kestlikust eluviisist.
+                    
+                    </p>
+                  <p className="mb-2">Valmistatud rakendus peab aitama täita mitmeid kestlikkuse eesmärke:</p>
                   <ul className="list-none pl-4 space-y-1 overflow-hidden">
-                    <li className='text-base-regular'>• Toidujäätmete vähendamine: Rakendus võimaldab jagada soomeüliõpiliku toitu, mis muidu läheks raisku</li>
-                    <li className='text-base-regular'>• Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üleliigset süüa, jagades üle jäävat toitu</li>
-                    <li className='text-base-regular'>• Keskkonnateadlik eluviis: Rakendus võimaldab kasutajatel jälgida oma todu tootmiseks ja selle hävitamiseks kuluvat süsinikujalajälge</li>
-                    <li className='text-base-regular'>• Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut</li>
-                    <li className='text-base-regular'>• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskmise vähendamise olulisuse ning asjaliku arutelu kaalulikuse kohta</li>
+                    <li className='text-base-regular'>• Toidujäätmete vähendamine: Rakendus võimaldab jagada söömiskõlblikku toitu, mis muidu läheks raisku.</li>
+                    <li className='text-base-regular'>• Kogukonna koostöö: Rakendus edendab inimeste vahelist koostööd, kus kogukonnaliikmed saavad üksteist aidata, jagades üle jäävat toitu.</li>
+                    <li className='text-base-regular'>• Keskkonnahoid: Toidu jagamise kaudu väheneb vajadus uue toidu tootmiseks ja selle hävitamiseks, mis omakorda vähendab keskkonnakahjusid.</li>
+                    <li className='text-base-regular'>• Säästlik tarbimine: Inimesi julgustatakse kasutama juba olemasolevat toitu ja ressursse, enne kui nad ostavad midagi uut.</li>
+                    <li className='text-base-regular'>• Teadlikkuse tõstmine: Rakenduse kaudu jagatakse infot toidujäätmete ja raiskamise vähendamise olulisuse ning säästliku eluviisi kasulikkuse kohta.</li>
                   </ul>
                 </div>
                 <div className="p-4 bg-vocogray overflow-hidden"></div>
@@ -245,8 +253,8 @@ const Voistlused = () => {
           <div className="mt-16 overflow-hidden">
             <h2 className="text-heading2-bold mb-4 text-center md:text-left">Noor meister</h2>
             <p className="text-base-regular mb-8">
-              Noore Meistri nime all on toimuvad kutsemeistrivõistlused alates 2009. aastast. Formaate on mitmeid ja kutsevõistlused
-              toimuvad aastaringselt üle Eesti.
+            Noore Meistri nime all on toimuvad kutsemeistrivõistlused alates 2009. aastast. 
+            Formaate on mitmeid ja kutsevõistlused toimuvad aastaringselt üle Eesti.
             </p>
 
             <div className="w-full overflow-hidden">
@@ -266,8 +274,8 @@ const Voistlused = () => {
                   <div className="p-4 bg-lightvocogray overflow-hidden">
                     <h3 className="font-bold mb-2">Tarkvaraarendaja</h3>
                     <p className='text-base-regular'>
-                      Tarkvaraarendaja eriala kutsemeistrivõistlus on mõeldud kuni 26-aastastele (k.a.) noortele
-                      (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal.
+                    Tarkvaraarendaja eriala kutsemeistrivõistlus on mõeldud kuni 26-aastastele (k.a.) 
+                    noortele (sünniaasta 1999 või hilisem), kes õpivad kutseõppeasutustes tarkvaraarendaja erialal. 
                     </p>
                   </div>
                   <div className="p-4 flex items-center justify-center" style={{ backgroundColor: '#E9ECF3' }} overflow-hidden>
@@ -374,7 +382,7 @@ const Voistlused = () => {
                 </button>
                 
                 <div className="flex justify-center gap-2 w-full overflow-hidden"> 
-                  {getVisibleSlides(slides, currentSlideIndex).map((slide: any) => (
+                  {getVisibleSlides(slides, currentNoorMeisterIndex).map((slide: any) => (
                     <div 
                       key={slide.id} 
                       className="flex justify-center items-center w-1/3"
